@@ -97,8 +97,7 @@
 
     </div>
   </header><!-- End Header -->
-  {% block content %}
-  
+
   <!-- ======= Hero Section ======= -->
   <section id="hero">
     <div class="hero-container">
@@ -187,8 +186,10 @@
 
       </div>
     </section><!-- End Featured Section -->
-    {% endblock %}
 
+    {% block content %}
+
+    {% endblock %}
     {% comment %} <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container">
