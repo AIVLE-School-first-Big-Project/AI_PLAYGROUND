@@ -22,7 +22,7 @@ def fileUpload(request):
             imgfile=img,
         )
         fileupload.save()
-        return redirect('fileupload')
+        return render(request, 'ani/result.html')
     else:
         fileuploadForm = FileUploadForm
         context = {
