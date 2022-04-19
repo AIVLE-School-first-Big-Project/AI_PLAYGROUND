@@ -25,7 +25,7 @@
 
 ## UI/UX
 
-![baseui.png](README%20caf42/baseui.png)
+![baseui.png](README/baseui.png)
 
 ## 플로우차트
 
