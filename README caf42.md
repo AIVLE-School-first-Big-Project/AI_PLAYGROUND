@@ -17,6 +17,12 @@
 
 - AI의 다양한 서비스를 체험하고 싶은 사용자
 
+## 설정환경
+
+- bootstrap4 (pip3 install bootstrap4)
+- pip3 install Pillow
+- pip3 install opencv-python
+
 ## UI/UX
 
 ![baseui.png](README%20caf42/baseui.png)
