@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'bootstrap4',
     'base',
     'ani',
+    'voicebot',
+    'channels',
 
 ]
 
@@ -72,8 +74,17 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'aiplay.wsgi.application'
-
+# WSGI_APPLICATION = 'aiplay.wsgi.application'
+ASGI_APPLICATION = 'aiplay.asgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+        # 'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        # 'CONFIG': {
+        #     "hosts": [('127.0.0.1', 6379)],
+        # },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
