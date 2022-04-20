@@ -1,0 +1,48 @@
+.bg {
+  background: skyblue;
+}
+
+.balloon1 {
+  position: relative;
+  margin: 50px;
+  width: 400px;
+  height: 50px;
+  background: white;
+  border-radius: 10px;
+  resize: none;
+  overflow: hidden;
+  text-align: right;
+}
+
+.balloon1:after {
+  border-top: 0px solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 200px;
+}
+
+.balloon2 {
+  position: relative;
+  margin: 50px;
+  width: 400px;
+  height: 50px;
+  background: yellow;
+  border-radius: 10px;
+  resize: none;
+  overflow: hidden;
+}
+
+.balloon2:after {
+  border-top: 0px solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid yellow;
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 200px;
+}
