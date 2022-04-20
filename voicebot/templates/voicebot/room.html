@@ -3,10 +3,10 @@
 {% block content %}
     <link href="{% static 'voicebot/style.css' %}" rel="stylesheet">
     <div class='bg'>
-    <textarea class='balloon1' id="chat-log1" readonly></textarea>
-    <textarea class='balloon2' id="chat-log2" readonly></textarea>
-    <textarea class='balloon1' id="chat-log3" readonly></textarea>
-    <textarea class='balloon2' id="chat-log4" readonly></textarea>
+    <textarea class='balloon0' id="chat-log1" readonly></textarea><br>
+    <textarea class='balloon0' id="chat-log2" readonly></textarea><br>
+    <textarea class='balloon0' id="chat-log3" readonly></textarea><br>
+    <textarea class='balloon0' id="chat-log4" readonly></textarea><br>
     </div>
     <input id="chat-message-input" type="text" size="100"><br>
     <input id="chat-message-submit" type="button" value="Send">
@@ -29,6 +29,15 @@
             document.querySelector('#chat-log2').value = document.querySelector('#chat-log3').value;
             document.querySelector('#chat-log3').value = document.querySelector('#chat-log4').value;
             document.querySelector('#chat-log4').value = (data.message + '\n');
+            document.querySelector('#chat-log1').className = document.querySelector('#chat-log2').className
+            document.querySelector('#chat-log2').className = document.querySelector('#chat-log3').className
+            document.querySelector('#chat-log3').className = document.querySelector('#chat-log4').className
+            if (data.id == 1) {
+                document.querySelector('#chat-log4').className = 'balloon1';
+            }
+            else {
+                document.querySelector('#chat-log4').className = 'balloon2';
+            }
         };
 
         chatSocket.onclose = function(e) {

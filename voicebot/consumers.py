@@ -28,6 +28,11 @@ class ChatConsumer(AsyncWebsocketConsumer):
         id = text_data_json['id']
         message = text_data_json['message']
 
+        await self.send(text_data=json.dumps({
+            'id': id,
+            'message': message
+        }))
+        
         # Send message to room group
         await self.channel_layer.group_send(
             self.room_group_name,
@@ -43,12 +48,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
         id = event['id']
         message = event['message']
 
-        # Send message to WebSocket
-        await self.send(text_data=json.dumps({
-            'id': id,
-            'message': message
-        }))
-
         input = {'message': message}
         try:
             response = requests.post('http://127.0.0.9:8080/predict/', data=input)
@@ -56,7 +55,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         except:
             result = {'message': '서버와 연결할 수 없습니다'}
 
-        id = '1'
+        id = 1
         message = result['message']
         # Send message to WebSocket
         await self.send(text_data=json.dumps({
