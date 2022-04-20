@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'ani',
     'voicebot',
     'channels',
+    'pcolor',
 
 ]
 
