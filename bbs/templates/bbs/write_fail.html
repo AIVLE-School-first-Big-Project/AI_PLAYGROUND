@@ -1,0 +1,20 @@
+{% extends "user/base2.html"%}
+{% block content %}
+
+<style>
+  #write_fail {
+      font-family: 'S-CoreDream-4Regular';
+  }
+</style>
+
+<div class="jumbotron">
+  <div class="container text-center" id="write_fail" style="margin-top:200px;">
+    <h1>로그인 후 사용해주세요.</h1>
+    <button type = "button" class = "btn btn-outline-success" onclick = "location.href='/user/login'"
+      style="margin-top:30px; padding-right:100px; padding-left:100px; font-weight:bold">
+        로그인
+    </button>
+  </div>
+</div>
+
+{% endblock %}

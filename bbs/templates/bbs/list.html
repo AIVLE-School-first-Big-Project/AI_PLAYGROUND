@@ -1,0 +1,138 @@
+{% extends 'user/base2.html' %}
+{% block content %}
+
+<style>
+  .pagination {
+    display: inline-block;
+  }
+  
+  .pagination a {
+    color: white;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  #res_name {
+    cursor: pointer;
+  }
+
+  #list {
+      font-family: 'S-CoreDream-4Regular';
+  }
+</style>
+
+<div class="container" id="list" style="margin-bottom: 10px; margin-top:10px">
+  <form method="GET" action="{% url 'reviews:list' %}" class="row g-2 justify-content-center">
+
+ 
+      <div id="user_id" class="col-md-3">
+          {% if user_id %}
+              <input class="form-control" name="user_id" type="text" value="{{ user_id }}">
+          {% else %}
+              <input class="form-control" name="user_id" type="text" placeholder="작성자 입력">
+          {% endif %}
+      </div> 
+
+      <div id="title" class="col-md-3">
+          {% if title %}
+              <input class="form-control" name="title" type="text" value="{{ title }}">
+          {% else %}
+              <input class="form-control" name="title" type="text" placeholder="제목 입력">
+          {% endif %}
+      </div> 
+
+      <div id="store_name" class="col-md-3">
+          {% if store_name %}
+              <input class="form-control" name="store_name" type="text" value="{{ store_name }}">
+          {% else %}
+              <input class="form-control" name="store_name" type="text" placeholder="음식점 입력">
+          {% endif %}
+      </div> 
+
+      <div class="col-md-1">
+          <button class="btn btn-light" type="submit">검색</button>
+      </div>
+
+  </form>
+</div>
+
+<div class="container" id="list">
+<form id='fm' method="GET" action="{% url 'reviews:details' %}">
+  <body style='overflow:scroll'>
+    <table class='table table-hover'>
+      <colgroup>
+        <col width="100px">
+        <col width="150px">
+        <col width="200px">
+        <col width="200px">
+        <col width="200px">
+    </colgroup>
+    <tr>
+      <th scope="col" style='text-align:center;'>게시글 번호</th>
+      <th scope="col" style='text-align:center;'>작성자</th>
+      <th scope="col" style='text-align:center;'>제목</th>
+      <th scope="col" style='text-align:center;'>음식점 이름</th>
+      <th scope="col" style='text-align:center;'>작성(수정)일자</th>
+    </tr>
+    {% for item in info %}
+    <tr>
+      <td id="res_name" name="item.id" style='text-align:center;'><p onclick="getID('{{ item.id }}')">{{ item.id }}</p></td>
+      {% if item.member_id is not None %}
+        <td id="res_name" name="item.member_id.user_id" style='text-align:center;'><p onclick="getID('{{ item.id }}')">{{ item.member_id.user_id }}</p></td>
+      {% else %}
+        <td id="res_name" name="item.member_id.user_id" style='text-align:center;'><p onclick="getID('{{ item.id }}')">(알 수 없음)</p></td>
+      {% endif %}
+      <td id="res_name" name="item.title" style='text-align:center;'><p onclick="getID('{{ item.id }}')">{{ item.title }}</p></td>
+      <td id="res_name" name="item.store_name" style='text-align:center;'><p onclick="getID('{{ item.id }}')">{{ item.store_name }}</p></td>
+      <td id="res_name" name="item.date" style='text-align:center;'><p onclick="getID('{{ item.id }}')">{{ item.date }}</p></td>
+    </tr>
+    {% endfor %}
+    </table>
+
+
+    <div style='text-align:center;'>
+      <ul class='pagination'>
+        {% if has_previous %}
+          <a href='{% url "reviews:list" %}?page={{ start_page | add:"-1" }}&user_id={{ user_id }}&title={{ title }}&store_name={{ store_name }}'>
+            {{ "[Prev]" }}
+          </a>
+        {% endif %}
+
+        {% for i in page_range %}
+          {% if i == now_page %}
+            <a href='{% url "reviews:list" %}?page={{ i }}&user_id={{ user_id }}&title={{ title }}&store_name={{ store_name }}' style="color: green">
+              {{ i }}
+            </a>
+          {%else %}
+            <a href='{% url "reviews:list" %}?page={{ i }}&user_id={{ user_id }}&title={{ title }}&store_name={{ store_name }}'>
+              {{ i }}
+            </a>
+          {% endif %}
+        {% endfor %}
+        
+        {% if has_next%}
+          <a href='{% url "reviews:list" %}?page={{ end_page | add:"+1" }}&user_id={{ user_id }}&store_name={{ store_name }}'>
+            {{ "[Next]" }}
+          </a>
+        {% endif %}
+
+      </ul>
+    </div>
+  </body>
+</form>
+</div>
+
+<div id="list" style='text-align:center;'>
+  <form action="{% url 'reviews:write' %}" >
+    <button>글쓰기</button>
+  </form>
+</div>
+
+
+<script> 
+  function getID(id) {
+      window.location.href="{% url 'reviews:details' %}?id=" + id;
+  }
+</script>
+
+{% endblock %}
