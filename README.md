@@ -19,13 +19,16 @@
 
 ## 설정환경
 
-- bootstrap4 (pip3 install bootstrap4)
-- pip3 install Pillow
-- pip3 install opencv-python
+- requirements로 제공 예정.
+
+## flask 모듈화
+
+- https://github.com/dhy02094/ugatit_flask ( 3, 전달 참조.)
+
 
 ## UI/UX
 
-![baseui.png](README/baseui.png)
+![baseui.png](/play_django/README/baseui.png)
 
 ## 플로우차트
 
