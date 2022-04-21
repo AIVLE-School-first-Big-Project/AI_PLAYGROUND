@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+  {% block content %}
+  
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <!-- Slide 1 -->
+          <div class="carousel-item active" style="background: url({% static 'assets/img/slide/slide-1.jpg' %})">
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animate__animated animate__fadeInDown">Welcome to <span>AI Playground</span></h2>
+                <p class="animate__animated animate__fadeInUp">AI Playground에 오신 것을 환영합니다~ 내 퍼스널 컬러는 ? Personal COLOR</p>
+                <a href="{% url 'pcolor:pcimgupload' %}" class="btn-get-started animate__animated animate__fadeInUp">Click</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="carousel-item " style="background: url({% static 'assets/img/slide/slide-2.jpg' %})">
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animate__animated fanimate__adeInDown">Welcome to <span>AI Playground</span></h2>
+                <p class="animate__animated animate__fadeInUp">AI Playground에 오신 것을 환영합니다~ 내가 만화주인공이라면??</p>
+                <a href="{% url 'ani:fileupload' %}" class="btn-get-started animate__animated animate__fadeInUp">Click</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="carousel-item " style="background: url({% static 'assets/img/slide/slide-3.jpg' %})">
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animate__animated animate__fadeInDown">Welcome to <span>AI Playground</span></h2>
+                <p class="animate__animated animate__fadeInUp">AI Playground에 오신 것을 환영합니다~ 연예인과 통화 한번 해보실래요?</p>
+                <a href="voicebot" class="btn-get-started animate__animated animate__fadeInUp">Click</a>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= Featured Section ======= -->
+    <section id="featured" class="featured">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="icon-box">
+              <i class="bi bi-card-checklist"></i>
+              <h3><a href="{% url 'pcolor:pcimgupload' %}">Personal Color</a></h3>
+              <p>AI 기술을 활용해 지금 바로 당신의 personal color를 확인해보세요~ 여러분의 맞는 옷을 추천해드리겠습니다.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="icon-box">
+              <i class="bi bi-bar-chart"></i>
+              <h3><a href="{% url 'ani:fileupload' %}">애니메이션화</a></h3>
+              <p>나는 애니메이션에서 어떤 모습을까?? 지금 바로 여러분의 사진을 올려 애니메이션 모습을 확인해보세요.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="icon-box">
+              <i class="bi bi-binoculars"></i>
+              <h3><a href="voicebot">연예인과 통화하기</a></h3>
+              <p>외로운 밤. 좋아하는 연예인과 통화하고 싶지 않으세요?? 여러분의 최애 연예인이 여러분의 밤을 지켜드릴게요. </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Featured Section -->
+    {% endblock %}
