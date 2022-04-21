@@ -17,13 +17,13 @@
               <div class="carousel-content">
                 <h2 class="animate__animated animate__fadeInDown">Welcome to <span>AI Playground</span></h2>
                 <p class="animate__animated animate__fadeInUp">AI Playground에 오신 것을 환영합니다~ 내 퍼스널 컬러는 ? Personal COLOR</p>
-                <a href="" class="btn-get-started animate__animated animate__fadeInUp">Click</a>
+                <a href="{% url 'pcolor:pcimgupload' %}" class="btn-get-started animate__animated animate__fadeInUp">Click</a>
               </div>
             </div>
           </div>
 
           <!-- Slide 2 -->
-          <div class="carousel-item" style="background: url({% static 'assets/img/slide/slide-2.jpg' %})">
+          <div class="carousel-item " style="background: url({% static 'assets/img/slide/slide-2.jpg' %})">
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2 class="animate__animated fanimate__adeInDown">Welcome to <span>AI Playground</span></h2>
@@ -34,7 +34,7 @@
           </div>
 
           <!-- Slide 3 -->
-          <div class="carousel-item" style="background: url({% static 'assets/img/slide/slide-3.jpg' %})">
+          <div class="carousel-item " style="background: url({% static 'assets/img/slide/slide-3.jpg' %})">
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2 class="animate__animated animate__fadeInDown">Welcome to <span>AI Playground</span></h2>
@@ -69,7 +69,7 @@
           <div class="col-lg-4">
             <div class="icon-box">
               <i class="bi bi-card-checklist"></i>
-              <h3><a href="">Personal Color</a></h3>
+              <h3><a href="{% url 'pcolor:pcimgupload' %}">Personal Color</a></h3>
               <p>AI 기술을 활용해 지금 바로 당신의 personal color를 확인해보세요~ 여러분의 맞는 옷을 추천해드리겠습니다.</p>
             </div>
           </div>
