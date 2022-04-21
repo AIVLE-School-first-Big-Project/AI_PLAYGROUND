@@ -23,7 +23,7 @@
 
 ## flask 모듈화
 
-- https://github.com/dhy02094/ugatit_flask ( 3, 전달 참조.)
+- 
 
 
 ## UI/UX
