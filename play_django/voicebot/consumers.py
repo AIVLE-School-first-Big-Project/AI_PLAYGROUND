@@ -1,5 +1,9 @@
+import os
 import requests
 import json
+import numpy as np
+import soundfile as sf
+import datetime
 from channels.generic.websocket import AsyncWebsocketConsumer
 
 class ChatConsumer(AsyncWebsocketConsumer):
@@ -57,8 +61,24 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         id = 1
         message = result['message']
+        wav = result['wav']
+        sample_rate = int(wav['0'])
+        del wav['0']
+        arr = []
+        for i in range(len(wav)):
+            arr.append(float(wav[str(i + 1)]))
+        wav = np.array(arr)
+        path = datetime.datetime.today().strftime('%Y%m%d%H%M%S') + '.wav'
+
+        if not os.path.exists('media'):
+            os.makedirs('media')
+        if not os.path.exists('media/tts'):
+            os.makedirs('media/tts')
+        sf.write('media/tts/' + path, wav, sample_rate)
+
         # Send message to WebSocket
         await self.send(text_data=json.dumps({
             'id': id,
+            'path': path,
             'message': message
         }))

@@ -34,6 +34,8 @@
             document.querySelector('#chat-log3').className = document.querySelector('#chat-log4').className
             if (data.id == 1) {
                 document.querySelector('#chat-log4').className = 'balloon1';
+                var audio = new Audio('../media/tts/' + data.path);
+                audio.play();
             }
             else {
                 document.querySelector('#chat-log4').className = 'balloon2';
