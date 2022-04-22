@@ -4,6 +4,7 @@ import tensorflow as tf
 from transformers import AutoTokenizer
 from transformers import TFGPT2LMHeadModel
 import joblib
+import requests
 
 app = Flask(__name__)
 
@@ -11,14 +12,13 @@ app = Flask(__name__)
 def index():
     return "hello world!"
 
-
-@app.route('/chatbot', methods=['POST'])
+@app.route('/chatbot/', methods=['POST'])
 def get_chatbot_answer():
-    
+
     parser = reqparse.RequestParser()
     parser.add_argument('user_text')
     arg = parser.parse_args()
-    
+
     user_sentence = '<usr>' + arg['user_text'] + '<sys>'
     input_ids = [tokenizer.bos_token_id] + tokenizer.encode(user_sentence)
     input_ids = tf.convert_to_tensor([input_ids])
@@ -26,9 +26,15 @@ def get_chatbot_answer():
     output_ids = model.generate(input_ids, max_length=32, do_sample=True, top_k=20)
     chatbot_sentence = tokenizer.decode(output_ids[0].numpy().tolist())
     chatbot_answer = chatbot_sentence.split('<sys> ')[1].replace('</s>', '')
-    result = {'chatbot_answer': chatbot_answer}
+    input = {'sentences':chatbot_answer}
+
+    try:
+        response = requests.post('http://127.0.0.10:8080/predict/', data=input)
+        result = response.json()
+    except:
+        result = {'0':'0'}
     
-    return result
+    return {'message': chatbot_answer, 'wav': result}
 
 
 if __name__ == '__main__':
