@@ -288,4 +288,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# flast-tts
+*.wav
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,django,python
