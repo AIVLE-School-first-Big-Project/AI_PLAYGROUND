@@ -7,7 +7,6 @@
     <textarea class='balloon0' id="chat-log2" readonly></textarea><br>
     <textarea class='balloon0' id="chat-log3" readonly></textarea><br>
     <textarea class='balloon0' id="chat-log4" readonly></textarea><br>
-    </div>
     <input id="chat-message-input" type="text" size="100"><br>
     <input id="chat-message-submit" type="button" value="Send">
     {{ room_name|json_script:"room-name" }}
@@ -23,24 +22,59 @@
             + '/'
         );
 
+        var path1 = '';
+        var path2 = '';
+        var path3 = '';
+        var path4 = '';
+        var audio = new Audio();
+
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
             document.querySelector('#chat-log1').value = document.querySelector('#chat-log2').value;
             document.querySelector('#chat-log2').value = document.querySelector('#chat-log3').value;
             document.querySelector('#chat-log3').value = document.querySelector('#chat-log4').value;
             document.querySelector('#chat-log4').value = (data.message + '\n');
-            document.querySelector('#chat-log1').className = document.querySelector('#chat-log2').className
-            document.querySelector('#chat-log2').className = document.querySelector('#chat-log3').className
-            document.querySelector('#chat-log3').className = document.querySelector('#chat-log4').className
+            document.querySelector('#chat-log1').className = document.querySelector('#chat-log2').className;
+            document.querySelector('#chat-log2').className = document.querySelector('#chat-log3').className;
+            document.querySelector('#chat-log3').className = document.querySelector('#chat-log4').className;
+
+            path1 = path2;
+            path2 = path3;
+            path3 = path4;
+
             if (data.id == 1) {
                 document.querySelector('#chat-log4').className = 'balloon1';
-                var audio = new Audio('../media/tts/' + data.path);
+                audio.pause();
+                audio = new Audio('../media/tts/' + data.path);
                 audio.play();
+                path4 = data.path
             }
             else {
                 document.querySelector('#chat-log4').className = 'balloon2';
+                path4 = ''
             }
         };
+
+        document.querySelector('#chat-log1').onclick = function(e) {
+            audio.pause();
+            audio = new Audio('../media/tts/' + path1);
+            audio.play();
+        }
+        document.querySelector('#chat-log2').onclick = function(e) {
+            audio.pause();
+            audio = new Audio('../media/tts/' + path2);
+            audio.play();
+        }
+        document.querySelector('#chat-log3').onclick = function(e) {
+            audio.pause();
+            audio = new Audio('../media/tts/' + path3);
+            audio.play();
+        }
+        document.querySelector('#chat-log4').onclick = function(e) {
+            audio.pause();
+            audio = new Audio('../media/tts/' + path4);
+            audio.play();
+        }
 
         chatSocket.onclose = function(e) {
             console.error('Chat socket closed unexpectedly');

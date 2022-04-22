@@ -52,9 +52,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
         id = event['id']
         message = event['message']
 
-        input = {'message': message}
+        input = {'user_text': message}
         try:
-            response = requests.post('http://127.0.0.9:8080/predict/', data=input)
+            response = requests.post('http://127.0.0.1:5000/chatbot/', data=input)
             result = response.json()
         except:
             result = {'message': '서버와 연결할 수 없습니다'}
@@ -63,9 +63,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         message = result['message']
         wav = result['wav']
         sample_rate = int(wav['0'])
-        del wav['0']
         arr = []
-        for i in range(len(wav)):
+        for i in range(len(wav)-1):
             arr.append(float(wav[str(i + 1)]))
         wav = np.array(arr)
         path = datetime.datetime.today().strftime('%Y%m%d%H%M%S') + '.wav'

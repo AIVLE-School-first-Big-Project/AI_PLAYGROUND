@@ -1,20 +1,21 @@
 .bg {
   background: skyblue;
 }
+
 .balloon0 {
   position: relative;
-  margin: 50px;
   width: auto;
-  height: 50px;
   background: white;
+  height: 50px;
   opacity: 0;
   border-radius: 10px;
   resize: none;
   overflow: hidden;
 }
+
 .balloon1 {
   position: relative;
-  margin: 50px;
+  margin-left: 0px;
   width: auto;
   height: 50px;
   background: white;
@@ -23,9 +24,10 @@
   overflow: hidden;
   text-align: left;
 }
+
 .balloon2 {
   position: relative;
-  margin: 50px;
+  margin-left: 200px;
   width: auto;
   height: 50px;
   background: yellow;
@@ -33,4 +35,14 @@
   resize: none;
   overflow: hidden;
   text-align: right;
+}
+
+.select {
+  margin: 50px;
+  position: relative;
+}
+
+.div-select {
+  margin: 50px;
+  text-align: center;
 }
