@@ -1734,9 +1734,13 @@ section {
 --------------------------------------------------------------*/
 #footer {
   background: #404040;
-  padding: 0 0 30px 0;
+  width:100%;
+  height:70px;
   color: #fff;
   font-size: 14px;
+  bottom : 0;
+  position : fixed;
+
 }
 #footer .footer-newsletter {
   padding: 50px 0;
@@ -1868,11 +1872,69 @@ section {
 }
 #footer .copyright {
   text-align: center;
-  padding-top: 30px;
+  padding-top: 10px;
 }
 #footer .credits {
-  padding-top: 10px;
+  padding-top: 2px;
+  padding-bottom: 10px;
   text-align: center;
   font-size: 13px;
   color: #fff;
 }
+
+.ani_containerbox {
+   
+  padding-bottom: 150px;
+  text-align: center;
+}
+@font-face {
+   font-family: 'GangwonEdu_OTFBoldA';
+   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+   font-weight: normal;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'EliceDigitalBaeum-Bd';
+   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_elice@1.0/EliceDigitalBaeum-Bd.woff2') format('woff2');
+   font-weight: normal;
+   font-style: normal;
+}
+
+.ani_c_t{
+   font-family: "Raleway", sans-serif;
+   font-weight: 700;
+   color: #545454;
+ 
+  }
+
+.ani_text {
+padding-top: 5rem;
+color: black;
+font-family: 'GangwonEdu_OTFBoldA';
+text-align:center;
+padding-bottom : 3rem;
+}
+
+#ani_form{
+font-family: 'GangwonEdu_OTFBoldA';
+text-align:center ;
+}
+
+.btn-get-started {
+   font-family: "Raleway", sans-serif;
+   font-weight: 500;
+   font-size: 16px;
+   letter-spacing: 1px;
+   display: inline-block;
+   padding: 12px 32px;
+   border-radius: 50px;
+   transition: 0.5s;
+   line-height: 3;
+   margin: 10px;
+   color: #fff;
+   -webkit-animation-delay: 0.8s;
+   animation-delay: 0.8s;
+   border: 2px solid #e96b56;
+   background: #e96b56;
+ }
