@@ -1,9 +1,32 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
 {% block content %}
-<head>
-    <center>
-완료되었습니다.
-<img src = 'http://127.0.0.1:5000/static/{{filename}}'
-    </center>
-</head>
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+<div class='ani_containerbox'>
+    <div class="ani_text">
+		<h1 class = 'ani_c_t'> 당신의 결과는? </h1>
+        <p></p>
+        <h2 class = 'ani_c_t2'> WelCome To Animation </h2>
+    </div>
+<section>
+    <div id='ani_form'>
+    <img src = 'http://127.0.0.1:5000/static/{{filename}}' width='50%'>
+    <p></p>
+    만화 속 당신의 모습입니다!!
+    <p></p>
+    결과가 맘에 드시나요?? 다른 사진으로도 도전해보세요!
+    <p></p>
+    <p></p>
+        <a class="btn-get-started" href="{% url 'ani:fileupload' %}">👉 Go Review 👈</a>
+        <a class="btn-get-started" href="{% url 'ani:fileupload' %}">👉 TRY AGAIN 👈</a>
+</div>
+</section>
+
+
+
+
+
+
 {% endblock %}
