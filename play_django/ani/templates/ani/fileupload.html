@@ -2,17 +2,97 @@
 {% load static %}
 {% load bootstrap4 %}
 {% block content %}
-<head>
+
+<style>
+    .containerbox {
+   
+       {% comment %} background: #ddd6f3; {% endcomment %}
+       padding-bottom: 30px;
+       text-align: center;
+    }
+    @font-face {
+        font-family: 'GangwonEdu_OTFBoldA';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    
+    @font-face {
+        font-family: 'EliceDigitalBaeum-Bd';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_elice@1.0/EliceDigitalBaeum-Bd.woff2') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .c_t{
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        color: #545454;
+      
+       }
+
+    .text {
+    padding-top: 5rem;
+    color: black;
+    font-family: 'GangwonEdu_OTFBoldA';
+    text-align:center;
+    padding-bottom : 5rem;
+    }
+
+     #form{
+    font-family: 'GangwonEdu_OTFBoldA';
+    text-align:center ;
+     }
+
+     .btn-get-started {
+        font-family: "Raleway", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: 1px;
+        display: inline-block;
+        padding: 12px 32px;
+        border-radius: 50px;
+        transition: 0.5s;
+        line-height: 3;
+        margin: 10px;
+        color: #fff;
+        -webkit-animation-delay: 0.8s;
+        animation-delay: 0.8s;
+        border: 2px solid #e96b56;
+        background: #e96b56;
+      }
+
+</style>
+
+<div class='containerbox'>
+    <div class="text">
+		<h1 class = 'c_t'> 내가 이세계에선 만화주인공?! </h1>
+        {% comment %} class="btn btn-lg btn-primary" {% endcomment %}
+    </div>
+
+    <section>
+        <div style ="text-align:center";>
+        <img src = '/static/ani/imgs/namju.jpg' width='30%'>
+        <img src = '/static/ani/imgs/yg.jpeg' width='30%'>
+        </div>
+    </section>
+<section class = 'body'>
     <center>
-    안녕하세요!!! animation page 입니다.
-    </center>
-</head>
-<div class="container">
+
+    <div class="col-lg-4">
+        <div id ='form'>
+            주의사항: 파일명 영어필수! , 흐리거나 어두운 사진 x, 증명 사진은 잘 안나와요 ㅠ
+            <p></p>
+            그냥 모달 같은걸로 안 되는 예시 띄울까 생각중.
+            <p></p>
     <form method="POST" action="{% url 'ani:fileupload' %}" enctype="multipart/form-data">
         {% csrf_token %}
         {% bootstrap_form fileuploadForm %}
-        <input type="submit" class="btn btn-primary col-12" value="제출">
+        <input type="submit" class="btn-get-started" value="👉 CLICK HERE! 👈">
+    </div>
     </form>
+</center>
+</section>
 </div>
 
 {% endblock%}
