@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+  <section id="contact" class="contact">
+    <div class="container" style="display: flex; justify-content: center">
+      <!-- jwt 토큰의 사용자 정보를 가져오는 참고용 코드 -->
+      <script src="{% static 'assets/js/jwt-decode.js' %}"></script>
+      <script>
+        token = "{{ access_token }}"
+
+        decoded = jwt_decode(token)
+        user_id = decoded.user_id
+
+        sessionStorage.setItem('user_id', user_id)
+        console.log(sessionStorage.getItem('user_id'))
+
+        // sessionStorage.clear()
+      </script>
+
+          <form action="{% url 'member:login' %}" method="post" role="form" class="php-email-form">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input type="text" name="user_id" class="form-control" id="name" placeholder="UserID" required>
+              </div>
+              <div class="col-md-6 form-group mt-3 mt-md-0">
+                <input type="password" class="form-control" name="password" id="email" placeholder="Password" required>
+              </div>
+            <div>
+            <div class="form-group mt-3">
+              <textarea class="form-control" name="profile_text" rows="5" placeholder="I want to login" required></textarea>
+            </div>
+
+            <div class="text-center"><button type="submit">Login</button></div>
+          </form>
+    </div>
+  </section>
+{% endblock %}
