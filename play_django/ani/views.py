@@ -55,7 +55,7 @@ def fileUpload(request):
         files = open("media/ani_images/"+img.name, 'rb')
 
         upload = {'file': fileupload.imgfile,
-                'filename':fileupload.imgfile.name[10:]
+                'filename':fileupload.imgfile.name[11:]
         }
         print(upload)
         res = requests.post('http://127.0.0.1:5000/predict', files = upload)
