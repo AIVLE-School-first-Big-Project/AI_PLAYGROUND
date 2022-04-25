@@ -8,10 +8,12 @@
 <style>
  .containerbox {
 
-    background: linear-gradient(to right, #ddd6f3, #faaca8);
-    padding-bottom: 800px;
+  background-color: #D9D7F1;
+  padding-bottom: 800px;
     text-align: center;
  }
+
+
 
  @font-face {
     font-family: 'GangwonEdu_OTFBoldA';
@@ -26,11 +28,97 @@
     font-weight: normal;
     font-style: normal;
 }
+
+
+
+
+
+.sns {
+  background-color: white;
+  list-style:none;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+
+}
+ 
+.sns li {
+  float: left;
+    margin-right: 30px;
+}
 </style>
 <div class="container">
   <div class="containerbox">
+      <p na>{{pcolor}}</p>
+      공유하기
+      <ul class="sns">
+        <li class="facebook">
+        <a href="#n" onclick="fn_sendFB('facebook')" class="facebook" target="_self" title="페이스북 새창열림">
+          <img src="  https://ifh.cc/g/XZoTc1.png" />
+        </a>
+        </li>
+        <li class="twitter">
+        <a href="#n" onclick="fn_sendFB('twitter');" class="twitter" target="_self" title="트위터 새창열림"> 
+          <img src=" https://ifh.cc/g/hKyC3n.png" />      </a>
+        </li>
+        <li>
+          <a id="kakao-link-btn" href="javascript:kakaoShare()">
+            <img src="https://ifh.cc/g/XmklsW.png" />
+          </a>
+        </li>
+  
+    </ul>
     </div>
-   </div>
-  </div>
-</div>
+    </div>
+
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript">
+  Kakao.init('fc59acf1c10bdd447a92baecf5fa628a');
+  console.log(Kakao.isInitialized());
+  function kakaoShare() {
+    Kakao.Link.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: '퍼스널 컬러 진단',
+        description: '나에게 착붙는 베스트 컬러는 뭘까?🤷',
+        imageUrl: 'https://ifh.cc/g/vrLh29.jpg',
+        link: {
+          mobileWebUrl: 'http://127.0.0.1:8000/pcolor/',
+          webUrl: 'http://127.0.0.1:8000/pcolor/',
+        },
+      },
+      buttons: [
+        {
+          title: '테스트하러가기',
+          link: {
+            mobileWebUrl:'http://127.0.0.1:8000/pcolor/',
+            webUrl:'http://127.0.0.1:8000/pcolor/',
+          },
+        },
+      ],
+      installTalk: true,
+    })
+  }
+
+     function fn_sendFB(sns) {
+    var thisUrl = document.URL;
+    var snsTitle = "퍼스널컬러진단하기";
+    if( sns == 'facebook' ) {
+        var url = "http://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent('http://127.0.0.1:8000/pcolor/');
+        window.open(url, "", "width=486, height=286");
+    }
+    else if( sns == 'twitter' ) {
+        var url = "http://twitter.com/share?url="+encodeURIComponent('http://127.0.0.1:8000/pcolor/')+"&text="+encodeURIComponent(snsTitle);
+        window.open(url, "tweetPop", "width=486, height=286,scrollbars=yes");
+    }
+  }
+    </script>
+
+
+  
 {% endblock%}
+

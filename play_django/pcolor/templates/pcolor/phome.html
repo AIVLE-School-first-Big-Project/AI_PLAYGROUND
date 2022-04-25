@@ -3,11 +3,14 @@
 {% load bootstrap4 %}
 {% block content %}
 
+<!-- bcolor  연보라 or 그라 -->
+<!-- D9D7F1 연보라 -->
+<!--그라 background: linear-gradient(to right, #ddd6f3, #faaca8); -->
 <style>
  .containerbox {
+  background-color: #D9D7F1;
 
-    background: linear-gradient(to right, #ddd6f3, #faaca8);
-    padding-bottom: 800px;
+  padding-bottom: 700px;
     text-align: center;
  }
 
@@ -17,72 +20,69 @@
     font-weight: normal;
     font-style: normal;
 }
-
 @font-face {
     font-family: 'EliceDigitalBaeum-Bd';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_elice@1.0/EliceDigitalBaeum-Bd.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
-
-
- .text {
-   padding-top: 15rem;
-   color: aliceblue;
-   font-family: 'GangwonEdu_OTFBoldA';
+ .imgbox {
+   padding-top: 10rem;
    text-align:center
-   
  }
-
  .c_t{
   font-family: 'GangwonEdu_OTFBoldA';
-
  }
-
  #form{
     font-family: 'GangwonEdu_OTFBoldA';
     text-align:center
-   
  }
-
- .square {
-  position: relative;
-  width: 50%;
+ img {
+ height: 60%;
+ width: 60%;
+ object-fit: scale-down;
 }
-
-.square:after {
-  content: "";
-  display: block;
-  padding-bottom: 100%;
-}
-
-.content {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
 </style>
 <div class="container">
   <div class="containerbox">
-    <div class="text">
-      <h1 class="c_t"> 퍼스널 컬러 테스트</h1>
+    <div class="imgbox">
+          <img src="{%static 'pcolor/imgs/test2.jpg' %}">  
     </div>
-      
       <div>
-
       </div>
-     
-
     <div id="form">
-      <form action="{% url 'pcolor:pcimgupload' %}" method="POST" enctype="multipart/form-data">
+      <form action="{% url 'pcolor:pcimgupload' %}" method="POST" enctype="multipart/form-data" id="pcform">
         {% csrf_token %}
-        <input type="file" name="image"><br>
-        <input type="submit" value="Submit" />
+      <input type="file" name="image" id="pcimg" accept=".png,.jpg" onchange="checkFile(this)"
+      ><br>
+        <input type="submit" value="Submit" id="submit" />
     </form> 
     </div>
    </div>
   </div>
 </div>
+
+<script>
+function checkFile(f){
+var file = f.files;
+if(!/\.(jpg|jpeg|png)$/i.test(file[0].name)) 
+alert('jpg, png 파일만 선택해 주세요.\n\n현재 파일 : ' + file[0].name);
+else return;
+f.outerHTML = f.outerHTML;
+}
+document.getElementById("submit").onclick = function(e) {
+  if (document.getElementById("pcimg").value == "") {
+    e.preventDefault();
+    alert("사진을 첨부해주세요");
+  }
+}
+
+
+
+</script>
+
+
+</script>
+
 
 {% endblock%}

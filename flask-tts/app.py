@@ -17,7 +17,7 @@ from util.hparams import *
 app = Flask(__name__)
 
 checkpoint_dir1 = './ckpt/ckpt-200000.pt'
-checkpoint_dir2 = './ckpt/ckpt-164000.pt'
+checkpoint_dir2 = './ckpt/ckpt-228000.pt'
 save_dir = './output'
 send_dir = './output/0.wav'
 os.makedirs(save_dir, exist_ok=True)
@@ -48,8 +48,8 @@ def inference2(text, idx):
     wav = scipy.signal.lfilter([1], [1, -preemphasis], wav)
     wav = librosa.effects.trim(wav, frame_length=win_length, hop_length=hop_length)[0]
     wav = wav.astype(np.float32)
-    sf.write(os.path.join(save_dir, '{}.wav'.format(idx)), wav, sample_rate)
-    return list(wav)
+    # sf.write(os.path.join(save_dir, '{}.wav'.format(idx)), wav, sample_rate)
+    return [sample_rate] + list(wav)
 
 @app.route('/predict/', methods=['POST'])
 def predict():
@@ -60,7 +60,7 @@ def predict():
     args = parser.parse_args()
     sentences = args['sentences']
     for i, text in enumerate(sentences):
-        jamo = ''.join(list(hangul_to_jamo(text)))
+        jamo = ''.join(list(hangul_to_jamo(text.replace('.', ''))))
         inference1(jamo, i)
 
     mel_list = glob.glob(os.path.join(save_dir, '*.npy'))
