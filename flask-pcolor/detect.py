@@ -13,10 +13,10 @@ def detect_face_masking(image_path):
     try:
         faces = face_detector(img)
     except:
-        # os.remove(f'./{image_path}')
+        os.remove(f'./{image_path}')
         image_path='fail'
     if len(faces) != 1 :
-        # os.remove(f'./{image_path}')
+        os.remove(f'./{image_path}')
         image_path='fail'
     else :
         f = faces[0]
@@ -28,7 +28,7 @@ def detect_face_masking(image_path):
         ratio_black = cv2.countNonZero(skin_msk)/(cropped_img.size/3)
         colorPercent = (ratio_black * 100) / scalePercent
         if colorPercent<=240:
-            # os.remove(f'./{image_path}')
+            os.remove(f'./{image_path}')
             image_path='fail'
 
         else:
