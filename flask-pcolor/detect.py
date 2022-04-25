@@ -30,10 +30,9 @@ def detect_face_masking(image_path):
         if colorPercent<=240:
             os.remove(f'./{image_path}')
             image_path='fail'
-            
+
         else:
             cv2.imwrite(f'./{image_path}',skin)
-    
+
     return image_path
 
-        
