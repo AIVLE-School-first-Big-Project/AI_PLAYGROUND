@@ -8,6 +8,7 @@ from django.db.models import Q
 import requests
 from .forms import FileUploadForm
 from .models import FileUpload
+import os
 # Create your views here.
 
 def first_view(request):
@@ -15,6 +16,32 @@ def first_view(request):
 
 def write(request):
     return render(request, 'ani/write.html')
+
+# def fileUpload(request):
+#     if request.method == 'POST':
+#         img = request.FILES['imgfile']
+#         fileupload = FileUpload(
+#             imgfile=img,
+#         )
+#         fileupload.save()
+#         print(fileupload.imgfile)
+        
+#         files = open("media/ani_images/"+img.name, 'rb')
+
+#         upload = {'file': files,
+#                 'filename':img.name
+#         }
+#         print(upload)
+#         res = requests.post('http://127.0.0.1:5000/predict', files = upload)
+#         print(res)
+#         fileupload.delete()
+#         return render(request, 'ani/result.html', upload)
+#     else:
+#         fileuploadForm = FileUploadForm
+#         context = {
+#             'fileuploadForm': fileuploadForm,
+#         }
+#         return render(request, 'ani/fileupload.html', context)
 
 def fileUpload(request):
     if request.method == 'POST':
@@ -24,8 +51,9 @@ def fileUpload(request):
         )
         fileupload.save()
         files = open("media/ani_images/"+img.name, 'rb')
-        upload = {'file': files,
-                'filename':img.name
+
+        upload = {'file': fileupload.imgfile,
+                'filename':fileupload.imgfile.name[11:]
         }
         res = requests.post('http://127.0.0.1:5000/predict', files = upload)
         return render(request, 'ani/result.html', upload)
