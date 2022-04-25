@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'voicebot',
     'channels',
     'pcolor',
-
+    'member',
 ]
 
 MIDDLEWARE = [
