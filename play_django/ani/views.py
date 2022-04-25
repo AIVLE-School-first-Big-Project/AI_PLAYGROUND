@@ -23,14 +23,11 @@ def fileUpload(request):
             imgfile=img,
         )
         fileupload.save()
-        print(img.name)
         files = open("media/ani_images/"+img.name, 'rb')
         upload = {'file': files,
                 'filename':img.name
         }
-        print(upload)
         res = requests.post('http://127.0.0.1:5000/predict', files = upload)
-        print(res)
         return render(request, 'ani/result.html', upload)
     else:
         fileuploadForm = FileUploadForm
