@@ -58,13 +58,13 @@ for epoch in range(EPOCHS):
 
   print('[Epoch: {:>4}] cost = {:>.9}'.format(epoch + 1, epoch_loss))
 
-import os
-print(os.getcwd())
+# import os
+# print(os.getcwd())
 
-from google.colab import drive
-drive.mount('/content/drive')
+# from google.colab import drive
+# drive.mount('/content/drive')
 
-import joblib
-joblib.dump(tokenizer, 'drive/MyDrive/tokenizer.pkl')
+# import joblib
+# joblib.dump(tokenizer, 'drive/MyDrive/tokenizer.pkl')
 
-model.save_pretrained('drive/MyDrive/model')
+# model.save_pretrained('drive/MyDrive/model')
