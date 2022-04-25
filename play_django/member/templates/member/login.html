@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div>
+        <form action="{% url 'member:login' %}" method="post" role="form">
+          {% csrf_token %}
+          <div>
+            <div>
+              <input type="text" name="user_id" id="name" placeholder="UserID" required>
+            </div>
+            <div>
+              <input type="password" name="password" id="email" placeholder="Password" required>
+            </div>
+          <div>
+          <div>
+            <textarea name="profile_text" rows="5" placeholder="I want to login" required></textarea>
+          </div>
+
+          <div>
+            <button type="submit">Login</button>
+          </div>
+        </form>
+    </div>
+
+{% endblock %}

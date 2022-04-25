@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('base.urls')),
     path('ani/', include('ani.urls')),
     path('voicebot/', include('voicebot.urls')),
-     path('pcolor/', include('pcolor.urls'))
+    path('pcolor/', include('pcolor.urls')),
+    path('member/', include('member.urls')),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
