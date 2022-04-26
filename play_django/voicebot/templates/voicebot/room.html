@@ -1,16 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% static 'voicebot/style.css' %}" rel="stylesheet">
-    <div class='bg'>
-    <textarea class='balloon0' id="chat-log1" readonly></textarea><br>
-    <textarea class='balloon0' id="chat-log2" readonly></textarea><br>
-    <textarea class='balloon0' id="chat-log3" readonly></textarea><br>
-    <textarea class='balloon0' id="chat-log4" readonly></textarea><br>
-    <input id="chat-message-input" type="text" size="100"><br>
-    <input id="chat-message-submit" type="button" value="Send">
-    {{ room_name|json_script:"room-name" }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <div id="chat-room">
+        <div class="message-box">
+            <div class="message-group">
+                <div class="chat-message other">
+                    <section><i class="fa fa-user"></i></section>
+                    <span>AI</span>
+                    <div>대화를 입력해주세요</div>
+                </div>
+            </div>
+        </div>
+        <div class="input-box">
+            <input type="text" id="text-input" onkeyup="if(window.event.keyCode==13){submit()} else{fill()}">
+            <div class="btn-submit-off" onclick='submit()'>
+                <span>전송</span>
+            </div>
+        </div>
     </div>
+    
+    {{ room_name|json_script:"room-name" }}
     <script>
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
@@ -22,79 +34,80 @@
             + '/'
         );
 
-        var path1 = '';
-        var path2 = '';
-        var path3 = '';
-        var path4 = '';
-        var audio = new Audio();
-
-        chatSocket.onmessage = function(e) {
-            const data = JSON.parse(e.data);
-            document.querySelector('#chat-log1').value = document.querySelector('#chat-log2').value;
-            document.querySelector('#chat-log2').value = document.querySelector('#chat-log3').value;
-            document.querySelector('#chat-log3').value = document.querySelector('#chat-log4').value;
-            document.querySelector('#chat-log4').value = (data.message + '\n');
-            document.querySelector('#chat-log1').className = document.querySelector('#chat-log2').className;
-            document.querySelector('#chat-log2').className = document.querySelector('#chat-log3').className;
-            document.querySelector('#chat-log3').className = document.querySelector('#chat-log4').className;
-
-            path1 = path2;
-            path2 = path3;
-            path3 = path4;
-
-            if (data.id == 1) {
-                document.querySelector('#chat-log4').className = 'balloon1';
-                audio.pause();
-                audio = new Audio('../media/tts/' + data.path);
-                audio.play();
-                path4 = data.path
-            }
-            else {
-                document.querySelector('#chat-log4').className = 'balloon2';
-                path4 = ''
-            }
-        };
-
-        document.querySelector('#chat-log1').onclick = function(e) {
-            audio.pause();
-            audio = new Audio('../media/tts/' + path1);
-            audio.play();
-        }
-        document.querySelector('#chat-log2').onclick = function(e) {
-            audio.pause();
-            audio = new Audio('../media/tts/' + path2);
-            audio.play();
-        }
-        document.querySelector('#chat-log3').onclick = function(e) {
-            audio.pause();
-            audio = new Audio('../media/tts/' + path3);
-            audio.play();
-        }
-        document.querySelector('#chat-log4').onclick = function(e) {
-            audio.pause();
-            audio = new Audio('../media/tts/' + path4);
-            audio.play();
-        }
-
         chatSocket.onclose = function(e) {
             console.error('Chat socket closed unexpectedly');
         };
 
-        document.querySelector('#chat-message-input').focus();
-        document.querySelector('#chat-message-input').onkeyup = function(e) {
-            if (e.keyCode === 13) {  // enter, return
-                document.querySelector('#chat-message-submit').click();
-            }
-        };
-
-        document.querySelector('#chat-message-submit').onclick = function(e) {
-            const messageInputDom = document.querySelector('#chat-message-input');
+        function submit()  { 
+            const messageInputDom = document.querySelector('#text-input');
             const message = messageInputDom.value;
+            if (message == '') {
+                return false;
+            }
             chatSocket.send(JSON.stringify({
                 'id': 0,
                 'message': message
             }));
+            const temp = document.querySelector('#chat-room > div.input-box > div').className = 'btn-submit-off';
             messageInputDom.value = '';
+        }
+
+        function fill() {
+            const messageInputDom = document.querySelector('#text-input');
+            const message = messageInputDom.value;
+            if (message == '') {
+                document.querySelector('#chat-room > div.input-box > div').className = 'btn-submit-off';
+            }
+            else {
+                document.querySelector('#chat-room > div.input-box > div').className = 'btn-submit-on';
+            }
+        }
+
+        var audio = new Audio();
+
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            
+            var html = document.createElement("div");
+            var section = document.createElement('section');
+            var i = document.createElement('i');
+            i.setAttribute("class", "fa fa-user");
+            section.appendChild(i);
+            html.appendChild(section);
+            var span = document.createElement('span');
+            var content = document.createElement("div");
+            var text = document.createTextNode(data.message);
+            content.setAttribute("data-path", data.path);
+            content.appendChild(text);
+
+            if (data.id == 0) {
+                html.setAttribute("class", "chat-message mine");
+                var text = document.createTextNode('홍길동');
+            }
+            else {
+                html.setAttribute("class", "chat-message other");
+                var text = document.createTextNode('AI');
+                content.onclick = function(){
+                    audio.pause();
+                    audio = new Audio('../media/tts/' + content.getAttribute('data-path'));
+                    audio.play();
+                };
+            }
+            span.appendChild(text);
+            html.appendChild(span);
+            html.appendChild(content);
+            
+            document.querySelector('#chat-room .message-group:last-child').append(html);
+
+            var boxDiv = document.getElementsByClassName('message-box');
+            boxDiv[0].scrollTop = boxDiv[0].scrollHeight;
+
+            if (data.id == 1) {
+                audio.pause();
+                audio = new Audio('../media/tts/' + data.path);
+                audio.play();
+            }
         };
-    </script>
+
+    </script> 
 {% endblock%}
