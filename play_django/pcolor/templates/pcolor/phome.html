@@ -10,6 +10,8 @@
  .containerbox {
   background: linear-gradient(to right, #ddd6f3, #faaca8);
 
+  /* background-color: #D9D7F1; */
+
   padding-bottom: 700px;
     text-align: center;
  }
@@ -34,18 +36,60 @@
   font-family: 'GangwonEdu_OTFBoldA';
  }
  #form{
+   padding-top: 30px;
+  display: inline-block;
     font-family: 'GangwonEdu_OTFBoldA';
     text-align:center
  }
  img {
- height: 60%;
- width: 60%;
+ height: 50%;
+ width: 50%;
  object-fit: scale-down;
 }
 
+.swal-text{
 
+color: black;
+font-family: 'GangwonEdu_OTFBoldA';
+font-size:30px
+
+}
+
+.swal-button{
+color: white;
+background-color: #ddd6f3;
+
+}
+.swal-footer {
+  text-align: center;
+}
+
+
+
+
+ .btn-grad {background-image: linear-gradient(to right, #ddd6f3 0%, #faaca8  51%)}
+.btn-grad {
+  margin: 50px;
+  padding: 15px 45px;
+  text-align: center; 
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  border-radius: 10px;
+  display: block;
+  font-size:25px;
+
+  }
+
+  .btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+  }
+         
 </style>
-<div class="container">
+<div class="container" id="b">
   <div class="containerbox">
     <div class="imgbox">
           <img src="{%static 'pcolor/imgs/test2.jpg' %}">  
@@ -55,30 +99,38 @@
     <div id="form">
       <form action="{% url 'pcolor:pcimgupload' %}" method="POST" enctype="multipart/form-data" id="pcform">
         {% csrf_token %}
-      <input type="file" name="image" id="pcimg" accept=".png,.jpg" onchange="checkFile(this)"
-      ><br>
-        <input type="submit" value="Submit" id="submit" />
+      <input type="file" name="image" id="pcimg" accept=".png,.jpg" onchange="checkFile(this)">
+        <button class="btn-grad" type="submit" value="Submit" id="submit"  data-toggle="modal" data-target="#exampleModal"  >테스트 하기 </button>
     </form> 
     </div>
    </div>
   </div>
 </div>
 
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+
+
 function checkFile(f){
 var file = f.files;
-if(!/\.(jpg|jpeg|png)$/i.test(file[0].name)) 
-alert('jpg, png 파일만 선택해 주세요.\n\n현재 파일 : ' + file[0].name);
+if(!/\.(jpg|jpeg|png)$/i.test(file[0].name)){
+swal('jpg, png 파일만 선택해 주세요 😵 \n현재 파일 : ' + file[0].name );
+}
 else return;
 f.outerHTML = f.outerHTML;
 }
 document.getElementById("submit").onclick = function(e) {
   if (document.getElementById("pcimg").value == "") {
     e.preventDefault();
-    alert("사진을 첨부해주세요");
-  }
-}
 
+  swal({
+  text: "사진을 첨부해주세요 👻"
+})
+ }
+
+}
 
 
 </script>

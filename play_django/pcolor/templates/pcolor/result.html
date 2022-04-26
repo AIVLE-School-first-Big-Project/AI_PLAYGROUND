@@ -8,13 +8,14 @@
 <style>
  .containerbox {
 
+  /* background-color: #D9D7F1; */
+
   background: linear-gradient(to right, #ddd6f3, #faaca8);
   padding-bottom: 800px;
     text-align: center;
  }
 
-
-
+ 
  @font-face {
     font-family: 'GangwonEdu_OTFBoldA';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
@@ -35,14 +36,14 @@
    text-align:center
 }
 
-img {
+#resultimg {
  height: 60%;
  width: 60%;
  object-fit: scale-down;
 }
 
 
-.sns {
+.sns{
   background-color: white;
   list-style:none;
   display: table;
@@ -54,8 +55,23 @@ img {
   margin-top: 10px;
 
 }
+.re{
+  background-color: #FBD6D2;
+  list-style:none;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  /* padding-top: 30px; */
+  /* padding-bottom: 30px; */
+  /* border-radius: 50%; */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+
+}
  
-.sns li {
+.sns li,.re li {
   float: left;
     margin-right: 30px;
 }
@@ -65,10 +81,23 @@ img {
   <div class="containerbox">
 
     <div class="imgbox">
-      <img src="{% get_static_prefix %}pcolor/imgs/{{pcolor}}.jpg">  
+      <img src="{% get_static_prefix %}pcolor/imgs/{{pcolor}}.jpg" id="resultimg">  
 </div>
-      공유하기
-      <ul class="sns">
+      
+
+
+<ul class="re" id="retest">
+  <li class="retest">
+  <a href="http://127.0.0.1:8000/pcolor/">
+    <img src="{%static 'pcolor/imgs/wundo.png' %}" width="50px" height="50px" />
+  </a>
+
+  </li>
+
+  </ul>
+      
+      공유하기 
+      <ul class="sns" id="test">
         <li class="facebook">
         <a href="#n" onclick="fn_sendFB('facebook')" class="facebook" target="_self" title="페이스북 새창열림">
           <img src="  https://ifh.cc/g/XZoTc1.png" />
@@ -90,6 +119,14 @@ img {
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript">
+  var result="{{pcolor}}";
+  console.log(result)
+  if (result == 'fail'){
+    document.getElementById('test').style.display='none'
+  }
+
+
+
   Kakao.init('fc59acf1c10bdd447a92baecf5fa628a');
   console.log(Kakao.isInitialized());
   function kakaoShare() {
