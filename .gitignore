@@ -293,4 +293,6 @@ $RECYCLE.BIN/
 
 # flask-ani
 flask-ani/checkpoint/
+flask-ani/static/
+flask-ani/imgs/
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,django,python
