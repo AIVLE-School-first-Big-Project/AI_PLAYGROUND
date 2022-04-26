@@ -291,4 +291,6 @@ $RECYCLE.BIN/
 # flast-tts
 *.wav
 
+# flask-ani
+flask-ani/checkpoint/
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,django,python

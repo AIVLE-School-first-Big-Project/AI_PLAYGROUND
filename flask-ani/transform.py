@@ -20,8 +20,6 @@ gan.build_model()
 saver = tf.train.Saver()
 saver.restore(sess, checkpoint_path)
 
-print('Model loaded!')
-
 def selfie2anime(img_path):
     img = cv2.imread(img_path, flags=cv2.IMREAD_COLOR)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -36,8 +34,7 @@ def selfie2anime(img_path):
     dets = detector(img)
     
     if len(dets) == 0:
-        print('No faces!')
-        result = None
+        result = 'No faces!'
     else:
         # don't crop if face is too big
         if dets[0].width() < img.shape[1] * 0.55:

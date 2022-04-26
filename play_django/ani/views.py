@@ -36,7 +36,7 @@ def fileUpload(request):
         test=literal_eval(res.json())
         if test['try'] == 'success':
             return render(request, 'ani/result.html', upload)
-        elif test['try'] == 'No faces!':
+        else:
             return render(request, 'ani/noface.html')
     else:
         fileuploadForm = FileUploadForm
