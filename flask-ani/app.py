@@ -1,7 +1,8 @@
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from werkzeug.utils import secure_filename
 import transform
+import json 
 
 app = Flask(__name__)
 
@@ -11,11 +12,16 @@ def file_upload():
     filename = f.filename
     f.save('imgs/' + secure_filename(filename))
     f2 = transform.selfie2anime('imgs/' + filename)
-    
-    result_dict = {
-        'name' : str(filename),
-    }
-    return '파일이 저장되었습니다'
+    if f2 == 'No faces!':
+        result_dict = {
+            'try' : 'No faces!',
+        }
+    else:
+        result_dict = {
+            'try' : 'success',
+        }
+    result_dict = json.dumps(result_dict)
+    return jsonify(result_dict)
     
 if __name__ == '__main__':
     app.run(port="5000", debug = True)

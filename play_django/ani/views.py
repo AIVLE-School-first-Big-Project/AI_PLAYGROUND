@@ -9,6 +9,8 @@ import requests
 from .forms import FileUploadForm
 from .models import FileUpload
 import os
+
+from ast import literal_eval
 # Create your views here.
 
 def first_view(request):
@@ -26,12 +28,16 @@ def fileUpload(request):
         )
         fileupload.save()
         files = open("media/ani_images/"+img.name, 'rb')
-
         upload = {'file': fileupload.imgfile,
                 'filename':fileupload.imgfile.name[11:]
         }
         res = requests.post('http://127.0.0.1:5000/predict', files = upload)
-        return render(request, 'ani/result.html', upload)
+
+        test=literal_eval(res.json())
+        if test['try'] == 'success':
+            return render(request, 'ani/result.html', upload)
+        elif test['try'] == 'No faces!':
+            return render(request, 'ani/noface.html')
     else:
         fileuploadForm = FileUploadForm
         context = {

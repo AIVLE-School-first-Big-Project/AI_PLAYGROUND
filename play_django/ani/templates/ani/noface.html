@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+<div class='ani_containerbox'>
+    <div class="ani_text">
+		<h1 class = 'ani_c_t'> 당신의 결과는? </h1>
+        <p></p>
+        <h2 class = 'ani_c_t2'> WelCome To Animation </h2>
+    </div>
+<section>
+    <div id='ani_form'>
+    <img src = '/static/ani/imgs/noface.png' width='50%'>
+    <p></p>
+    AI가 당신의 얼굴을 인식하지 못했습니다!!
+    <p></p>
+    다른 선명하게 나온 사진으로 시도해주세요!!
+    <p></p>
+    <p></p>
+        <a class="btn-get-started" href="{% url 'ani:fileupload' %}">👉 Go Review 👈</a>
+        <a class="btn-get-started" href="{% url 'ani:fileupload' %}">👉 TRY AGAIN 👈</a>
+</div>
+</section>
+
+
+
+
+
+
+{% endblock %}
