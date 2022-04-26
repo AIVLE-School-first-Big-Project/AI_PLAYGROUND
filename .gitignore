@@ -288,7 +288,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# flast-tts
+# flask-tts
 *.wav
 
 # flask-ani
