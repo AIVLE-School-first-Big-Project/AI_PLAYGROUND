@@ -16,9 +16,79 @@
         <img src = '/static/ani/imgs/namju.jpg' width='40%'>
         <img src = '/static/ani/imgs/iu.jpg' width='40%'>
         <p></p>
-        주의사항: 파일명 영어필수! , 흐리거나 어두운 사진 x, 증명 사진은 잘 안나와요 ㅠ
+        주의사항: 흐리거나 어두운 사진 x 증명 사진은 잘 안나와요 ㅠ 
         <p></p>
-        그냥 모달 같은걸로 안 되는 예시 띄울까 생각중.
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    GOOD CASE     
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">잘 나온 사례</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src = '/static/ani/imgs/good/g1.jpg' width=70%>
+          <p>
+          <p> 엄청 잘 변환 되진 않았지만 이 정도 밝기가 적당합니다.</p>
+          <img src = '/static/ani/imgs/good/g2.jpg' width=70%>
+          <p>
+          <p> 남들이 찍어준 사진보다 직접 찍은 셀카 결과가 좋았습니다. </p>
+          <img src = '/static/ani/imgs/good/g3.jpg' width=70%>
+          <p>
+          <p> 전체적으로 모든 픽셀이 밝고 정면이라 잘 나온것 같습니다. </p>
+          <img src = '/static/ani/imgs/good/g4.jpg' width=70%>
+          <p>
+          <p> 밝기와 얼굴 방향이 이상적입니다. </p>
+
+          
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+        
+  <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+    BAD CASE
+  </button>
+
+    <!-- Modal -->
+  <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabe2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabe2">안 좋은 사례</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <img src = '/static/ani/imgs/bad/bad1.jpg' width=70%>
+            <p>
+            <p> 어두운 부분을 잘 인식하지 못합니다. </p>
+            <img src = '/static/ani/imgs/bad/bad2.jpg' width=70%>
+            <p>
+            <p> 화질이 안 좋은 사진에 대해서 잘 변환하지 못합니다. </p>
+            <img src = '/static/ani/imgs/bad/bad3.jpg' width=70%>
+            <p>
+            <p> 흑인은 학습하지 못했습니다ㅠㅠ </p>
+            <img src = '/static/ani/imgs/bad/bad4.jpg' width=70%>
+            <p>
+            <p> 잘 나온 편이지만 음영의 중요성을 알립니다. </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+        
         <p></p>
         </div>
     <form method="POST" action="{% url 'ani:fileupload' %}" enctype="multipart/form-data">
