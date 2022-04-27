@@ -443,6 +443,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 2px solid #e96b56;
   background: #e96b56;
 }
+
 #hero .btn-get-started:hover {
   background: transparent;
   color: #e96b56;
@@ -1946,3 +1947,17 @@ text-align:center ;
    background: #e96b56;
  }
 
+ .abc {
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 12px 32px;
+  transition: 0.5s;
+  line-height: 1;
+  margin: 10px;
+  color: #fff;
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+  border: 2px solid #e96b55;
+  background: #e96b55;
+}
