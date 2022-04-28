@@ -54,7 +54,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         input = {'user_text': message}
         try:
-            response = requests.post('http://127.0.0.1:5000/chatbot/', data=input)
+            response = requests.post('http://127.0.0.1:5002/chatbot/', data=input)
             result = response.json()
         except:
             result = {'message': '서버와 연결할 수 없습니다'}

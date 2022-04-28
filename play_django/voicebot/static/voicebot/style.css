@@ -13,8 +13,10 @@ body, html {
   width: 500px;
   background-color: #6884b3;
   /* 임시 */
-  outline: 1px solid gray;
+  /* outline: 1px solid gray; */
+  box-shadow: 0 0 0 1px gray;
   position: relative;
+  border-radius: 6%;
 }
 
 #chat-room .message-box {
