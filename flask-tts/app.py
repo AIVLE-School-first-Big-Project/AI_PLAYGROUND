@@ -60,7 +60,7 @@ def predict():
     args = parser.parse_args()
     sentences = args['sentences']
     for i, text in enumerate(sentences):
-        jamo = ''.join(list(hangul_to_jamo(text.replace('.', ''))))
+        jamo = ''.join(list(hangul_to_jamo(text.replace('.', '').replace('!', '').replace('?', '').replace(',', ''))))
         inference1(jamo, i)
 
     mel_list = glob.glob(os.path.join(save_dir, '*.npy'))
@@ -82,4 +82,4 @@ if __name__ == '__main__':
     ckpt2 = torch.load(checkpoint_dir2, map_location=torch.device('cpu'))
     model2.load_state_dict(ckpt2['model'])
 
-    app.run(host='127.0.0.10', port=8080, debug=True)
+    app.run(host='127.0.0.1', port=5003, debug=True)
