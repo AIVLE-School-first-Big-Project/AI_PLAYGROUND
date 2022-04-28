@@ -29,7 +29,7 @@ def get_chatbot_answer():
     input = {'sentences':chatbot_answer}
 
     try:
-        response = requests.post('http://127.0.0.10:8080/predict/', data=input)
+        response = requests.post('http://127.0.0.1:5003/predict/', data=input)
         result = response.json()
     except:
         result = {'0':'0'}
@@ -41,4 +41,4 @@ if __name__ == '__main__':
     tokenizer = joblib.load('model/tokenizer.pkl')
     model = TFGPT2LMHeadModel.from_pretrained('model/tf_model')
     
-    app.run(host='127.0.0.1', port=5000, debug=True)
+    app.run(host='127.0.0.1', port=5002, debug=True)
