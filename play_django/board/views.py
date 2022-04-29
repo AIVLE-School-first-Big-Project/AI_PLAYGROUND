@@ -145,24 +145,22 @@ def list(request):
 
 def details(request):
     ''
-#     id = int(request.GET.get('id'))
-#     review = Review.objects.get(id=id)
+    id = int(request.GET.get('id'))
+    board = Board.objects.get(id=id)
 
-#     is_logined = False
-#     if 'user_id' in request.session and review.member_id:
-#         if request.session['user_id'] == review.member_id.user_id:
-#             is_logined = True
+    is_logined = False
 
-#     context = {
-#         'id' : id,
-#         'review' : review,
-#         'is_logined' : is_logined
-#     }
+    if if_logined(request) is not None and board.user_id:
+        if if_logined(request) == board.user_id.user_id:
+            is_logined = True
 
-#     if if_session(request):
-#         context['user_session_id'], context['user_session_veg_type'] = if_session(request)
-        
-#     return render(request, 'reviews/details.html', context)
+    context = {
+        'id' : id,
+        'board' : board,
+        'is_logined' : is_logined
+    }
+
+    return render(request, 'board/details.html', context)
 
 
 from aiplay import settings
