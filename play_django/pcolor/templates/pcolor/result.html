@@ -3,44 +3,34 @@
 {% load static %}
 {% load bootstrap4 %}
 {% block content %}
-
-
 <style>
  .containerbox {
-
    background-color:#F9F9F9;
-   padding-bottom: 800px;
+   padding-bottom: 280px;
     text-align: center;
  }
-
- 
  @font-face {
     font-family: 'GangwonEdu_OTFBoldA';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
-
 @font-face {
     font-family: 'EliceDigitalBaeum-Bd';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_elice@1.0/EliceDigitalBaeum-Bd.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
-
-
 .imgbox{
-    padding-top: 60px;
+    padding-top: 80px;
    text-align:center
 }
-
 #resultimg {
- height: 60%;
- width: 60%;
+ height: 50%;
+ width: 50%;
  object-fit: scale-down;
+ border-radius: 6%;
 }
-
-
 .sns{
   background-color: white;
   list-style:none;
@@ -51,7 +41,6 @@
   padding-bottom: 10px;
   border-radius: 5px;
   margin-top: 10px;
-
 }
 .re{
   background-color: #FBD6D2;
@@ -59,29 +48,40 @@
   display: table;
   margin-left: auto;
   margin-right: auto;
-  /* padding-top: 30px; */
-  /* padding-bottom: 30px; */
-  /* border-radius: 50%; */
+
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
   margin-top: 10px;
 
 }
- 
+
+#result{
+  visibility : hidden;
+}
+
 .sns li,.re li {
   float: left;
     margin-right: 30px;
 }
 </style>
 <div class="container">
-
   <div class="containerbox">
-
     <div class="imgbox">
       <img src="{% get_static_prefix %}pcolor/imgs/{{pcolor}}.jpg" id="resultimg">  
 </div>
-      
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <ul class="re" id="retest">
@@ -160,21 +160,8 @@
         window.open(url, "tweetPop", "width=486, height=286,scrollbars=yes");
     }
   }
-  
 
-
-
-
-
-
-
-
-
-
-
-
-
-    </script>
+  </script>
 
 
   

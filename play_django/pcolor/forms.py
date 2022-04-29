@@ -12,8 +12,7 @@ class pcimgUploadForm(ModelForm):
 class pcresultForm(ModelForm):
     class Meta:
         model=pcsave
-        fields=['pcolorname','resultimage']
+        fields=['pcolor']
         labels = {
-            'pcolorname':'퍼스널컬러',
-            'resultimage':'결과이미지'
-        }
+            'pcolor':'퍼스널컬러',
+       }

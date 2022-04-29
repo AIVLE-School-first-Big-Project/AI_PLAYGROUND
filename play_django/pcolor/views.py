@@ -4,8 +4,8 @@ import requests
 import json
 from django.http import HttpResponse,JsonResponse
 from .forms import pcimgUploadForm
-from .models import pcimgUpload,pcsave
-from member.models import User
+from .models import pcimgUpload
+
 
 def fileUpload(request):
     if request.method == 'POST':
@@ -29,20 +29,3 @@ def fileUpload(request):
             'fileuploadForm': form,
         }
     return render(request, 'pcolor/phome.html', context)
-
-def save(request): 
-    if request.is_ajax():
-        user_id = request.GET['user_id']
-        if not request.user.is_authenticated: 
-            message = "로그인이 필요합니다" 
-            context = {"message":message} 
-            return HttpResponse(json.dumps(context), content_type='application/json')
-        user = request.user
-        if pcsave.save.filter(id = User.user_id).exists(): 
-           pcsave.save.remove(user) 
-           message = "저장 취소" 
-        else:
-            pcsave.save(user_id)
-            message = "저장" #화면에 띄울 메세지
-        context = {"message":message}
-        return HttpResponse(json.dumps(context), content_type='application/json')  
