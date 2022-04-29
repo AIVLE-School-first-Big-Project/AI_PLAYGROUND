@@ -5,6 +5,8 @@ import json
 from django.http import HttpResponse,JsonResponse
 from .forms import pcimgUploadForm
 from .models import pcimgUpload
+import os
+from django.conf import settings
 
 
 def fileUpload(request):
@@ -29,3 +31,16 @@ def fileUpload(request):
             'fileuploadForm': form,
         }
     return render(request, 'pcolor/phome.html', context)
+
+
+def download(request):
+    if request.method == 'GET':
+        pcolor = request.GET.get('pcolor', '')
+        filepath = str(settings.BASE_DIR) + ('\\pcolor\\static\\pcolor\\imgs\\%s' % pcolor+".jpg")
+        print(filepath)
+        filename = os.path.basename(filepath)
+        with open(filepath, 'rb') as f:
+            response = HttpResponse(f, content_type='application/octet-stream')
+            response['Content-Disposition'] = 'attachment; filename=%s' % filename        
+    return response
+
