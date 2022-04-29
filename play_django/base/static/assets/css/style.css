@@ -1952,6 +1952,23 @@ text-align:center ;
    background: #e96b56;
  }
 
+ .btn-get-started2 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 15px 15px;
+  border-radius: 6px;
+  transition: 0.5s;
+  line-height: 3;
+  margin: 10px;
+  color: #fff;
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+  border: 2px solid #e96b56;
+  background: #e96b56;
+}
+
  .abc {
   font-weight: 300;
   font-size: 14px;
@@ -1984,7 +2001,7 @@ label {
 .filebox .upload-name {
   display: inline-block;
   height: 40px;
-  padding: 0 10px;
+  padding: 0 5px;
   vertical-align: middle;
   border: 1px solid #dddddd;
   width: 40%;
@@ -2013,7 +2030,7 @@ label {
 
 #root {
   width: 100%;
-  margin: 80px auto;
+  margin: -5px auto;
   max-width: 800px;
   align-items: center;
 }
