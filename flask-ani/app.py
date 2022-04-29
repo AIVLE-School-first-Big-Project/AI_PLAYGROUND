@@ -12,14 +12,12 @@ def file_upload():
     filename = f.filename
     f.save('imgs/' + secure_filename(filename))
     f2 = transform.selfie2anime('imgs/' + filename)
+    result_dict = {}
     if f2 == 'No faces!':
-        result_dict = {
-            'try' : 'No faces!',
-        }
+        result_dict['try'] = 'No faces!'
     else:
-        result_dict = {
-            'try' : 'success',
-        }
+        result_dict['try'] = 'success'
+        # result_dict['resultfile'] = '../flask-ani/static/' + filename
     result_dict = json.dumps(result_dict)
     return jsonify(result_dict)
     
