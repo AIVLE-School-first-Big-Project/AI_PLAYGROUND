@@ -57,7 +57,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             response = requests.post('http://127.0.0.1:5002/chatbot/', data=input)
             result = response.json()
         except:
-            result = {'message': '서버와 연결할 수 없습니다'}
+            result = {'message': '서버와 연결할 수 없습니다', 'wav': {'0': '0'}}
 
         id = 1
         message = result['message']
@@ -73,7 +73,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
             os.makedirs('media')
         if not os.path.exists('media/tts'):
             os.makedirs('media/tts')
-        sf.write('media/tts/' + path, wav, sample_rate)
+        try:
+            sf.write('media/tts/' + path, wav, sample_rate)
+        except:
+            pass
 
         # Send message to WebSocket
         await self.send(text_data=json.dumps({
