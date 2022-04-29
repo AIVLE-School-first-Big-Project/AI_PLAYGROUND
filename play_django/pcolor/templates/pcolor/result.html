@@ -43,16 +43,16 @@
   margin-top: 10px;
 }
 .re{
-  background-color: #FBD6D2;
+  border: 1px solid beige;
+  background-color: orange;
   list-style:none;
   display: table;
   margin-left: auto;
   margin-right: auto;
-
   padding-top: 10px;
   padding-bottom: 10px;
-  border-radius: 10px;
-  margin-top: 10px;
+  border-radius: 8%;
+  margin-top: 40px;
 
 }
 
@@ -64,16 +64,20 @@
   float: left;
     margin-right: 30px;
 }
+
+.far{
+
+  color:#F9F9F9
+}
 </style>
 <div class="container">
   <div class="containerbox">
     <div class="imgbox">
       <img src="{% get_static_prefix %}pcolor/imgs/{{pcolor}}.jpg" id="resultimg">  
+
+
+
 </div>
-
-
-
-
 
 
 
@@ -87,9 +91,23 @@
 <ul class="re" id="retest">
   <li class="retest">
   <a href="http://127.0.0.1:8000/pcolor/">
-    <img src="{%static 'pcolor/imgs/wundo.png' %}" width="50px" height="50px" />
-  </a>
-  </li>
+
+    <img src="{%static 'pcolor/imgs/wundo.png' %}" width="50px" height="58px" />
+  </a>  
+</li>
+
+<li id="liform">
+  <div id="form">
+    <form action="{% url 'pcolor:download' %}" method="GET"  id="form">
+      <input type="hidden" name="pcolor" value="{{pcolor}}" >
+      <button class="btn" type="submit" value="Submit" id="submit"> <i class="far fa-bookmark fa-3x"></i></button>
+  </form> 
+
+
+
+</li>
+
+
   </ul>
           <ul class="sns" id="test">
         <li class="facebook">
@@ -112,13 +130,35 @@
     </div>
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
 <script type="text/javascript">
   var result="{{pcolor}}";
   console.log(result)
   if (result == 'fail'){
     document.getElementById('test').style.display='none'
+    document.getElementById('liform').style.display='none'
+    $(".re").css('background-color','#ABC6FF');
+  }else if(result.includes('spring')){
+    $(".re").css('background-color','#FAF0AF');
   }
+    else if(result.includes('summer')){
+    $(".re").css('background-color','#C9DEFF');
+    }
+    else if(result.includes('fall')){
+    $(".re").css('background-color','#FFD19F');
+    }
+    else if(result.includes('winter')){
+    $(".re").css('background-color','#D3DAE5');
+    }
+  
 
+
+
+
+
+  
+  
 
 
   Kakao.init('fc59acf1c10bdd447a92baecf5fa628a');
