@@ -1,143 +1,147 @@
 body {
   font-family: 'Noto Sans KR', sans-serif;
-  overflow-y:hidden;
+  overflow-y: hidden;
 }
 
-body, html {
-  height:100%;
+body,
+html {
+  height: 100%;
 }
 
 #chat-room {
   margin: auto;
   height: 600px;
   width: 500px;
-  background-color: #6884b3;
-  /* 임시 */
-  /* outline: 1px solid gray; */
+  background-color: white;
   box-shadow: 0 0 0 1px gray;
   position: relative;
-  border-radius: 6%;
+  border-radius: 6% 0% 6% 6%;
 }
 
 #chat-room .message-box {
-  padding:0 0.7rem;
-  overflow-y:scroll;
-  height:calc(100% - 4.4rem);
+  padding: 0 0.7rem;
+  overflow-y: scroll;
+  scrollbar-width: 50px;
+  height: calc(100% - 4.4rem);
 }
 
 #chat-room .message-group::before {
-  content:attr(data-date-str);
-  display:block;
-  background-color:rgba(0,0,0,0.15);
-  border-radius:1rem;
-  text-align:center;
-  padding:0.3rem 0;
-  color:white;
-  font-size:1.6rem;
-  opacity:0;
+  content: attr(data-date-str);
+  display: block;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 1rem;
+  text-align: center;
+  padding: 0.3rem 0;
+  color: white;
+  font-size: 1.6rem;
+  opacity: 0;
 }
 
 #chat-room .chat-message {
-  margin-left:3rem;
-  margin-bottom:1rem;
-  position:relative;
+  margin-left: 3rem;
+  margin-bottom: 1rem;
+  position: relative;
 }
 
-#chat-room .chat-message > section {
-  position:absolute;
-  top:0;
-  left:-3rem;
+#chat-room .chat-message>section {
+  position: absolute;
+  top: 0;
+  left: -3rem;
   padding-bottom: 0px;
 }
 
-#chat-room .chat-message > span {
-  display:block;
+#chat-room .chat-message>span {
+  display: block;
 }
 
-#chat-room .chat-message > section {
-  font-size:3rem;
+#chat-room .chat-message>section {
+  font-size: 3rem;
 }
 
 #chat-room .chat-message::after {
-  content:"";
-  display:block;
-  clear:both;
+  content: "";
+  display: block;
+  clear: both;
 }
 
-#chat-room .chat-message > div {
-  background-color:white;
-  float:left;
-  padding:0.8rem;
-  border-radius:1rem;
-  clear:both;
-  font-weight:bold;
-  font-size:1.46rem;
-  box-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+#chat-room .chat-message>div {
+  background-color: #f1f3f5;
+  float: left;
+  padding: 0.8rem;
+  border-radius: 1rem;
+  clear: both;
+  font-weight: bold;
+  font-size: 1.46rem;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
-#chat-room .chat-message.mine > div {
-  background-color:#FDF01B;
-  float:right;
-  box-shadow: -1px 1px 0 rgba(0,0,0,0.3);
+#chat-room .chat-message.mine>div {
+  background-color: #3b80e0;
+  color: white;
+  float: right;
+  box-shadow: -1px 1px 0 rgba(0, 0, 0, 0.3);
 }
 
-#chat-room .chat-message.mine > span {
-  display:none;
+#chat-room .chat-message.mine>span {
+  display: none;
 }
 
-#chat-room .chat-message.mine > section {
-  display:none;
+#chat-room .chat-message.mine>section {
+  display: none;
 }
 
 #chat-room .input-box {
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 
 #chat-room .input-box #text-input {
-  width:100%;
-  display:block;
-  border:0;
-  outline:none;
-  padding-right:8.5rem;
-  padding-left:1rem;
-  padding-top:0.1rem;
-  font-size:1.4rem;
-  line-height:4rem;
-  font-weight:bold;
-  box-sizing:border-box;
+  background-color: #f1f3f5;
+  width: 100%;
+  display: block;
+  border: 0;
+  outline: none;
+  padding-right: 8.5rem;
+  padding-left: 1rem;
+  padding-top: 0.1rem;
+  font-size: 1.4rem;
+  line-height: 4rem;
+  font-weight: bold;
+  box-sizing: border-box;
+  border-radius: 0px 0px 35px 35px;
 }
 
 #chat-room .input-box .btn-submit-off {
-  position:absolute;
-  right:1rem;
-  top:50%;
-  transform:translateY(-50%);
-  padding:10px;
-  background-color:#fdf01b;
-  padding:10px;
-  color:#bfb73d;
-  border-radius:3px;
-  font-size:1.3rem;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px;
+  background-color: #3b80e0;
+  padding: 10px;
+  border-radius: 3px;
+  font-size: 1.3rem;
   color: #999999;
-  box-shadow:0 1px 10px rgba(0,0,0,0.2);
-  user-select:none;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+  user-select: none;
+  border-radius: 50px;
 }
 
 #chat-room .input-box .btn-submit-on {
-  position:absolute;
-  right:1rem;
-  top:50%;
-  transform:translateY(-50%);
-  padding:10px;
-  background-color:#fdf01b;
-  padding:10px;
-  color:#bfb73d;
-  border-radius:3px;
-  font-size:1.3rem;
-  color: #000000;
-  box-shadow:0 1px 10px rgba(0,0,0,0.2);
-  user-select:none;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px;
+  background-color: #3b80e0;
+  padding: 10px;
+  border-radius: 3px;
+  font-size: 1.3rem;
+  color: #ffffff;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+  user-select: none;
+  border-radius: 50px;
 }

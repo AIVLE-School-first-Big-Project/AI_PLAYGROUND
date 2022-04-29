@@ -2,24 +2,27 @@
 {% load static %}
 {% load bootstrap4 %}
 {% block content %}
-<link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
-
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet"/>
+<div class = 'container'>
 <div class='ani_containerbox'>
+  
     <div class="ani_text">
-		<h1 class = 'ani_c_t'> 내가 이세계에선 만화주인공?! </h1>
+      
+		<h1 class = 'ani_c_t'> AI와 만화속으로 </h1>
         <p></p>
-        <h2 class = 'ani_c_t2'> 또 다른 나를 찾아보세요! </h2>
+        <h2 class = 'ani_c_t2'> Me To Ani </h2>
     </div>
 
     <section>
         <div id='ani_form'>
         <img src = '/static/ani/imgs/namju.jpg' width='40%'>
+        <br>
         <img src = '/static/ani/imgs/iu.jpg' width='40%'>
         <p></p>
         주의사항: 흐리거나 어두운 사진 x 증명 사진은 잘 안나와요 ㅠ 
         <p></p>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<button type="button" class="abc" data-bs-toggle="modal" data-bs-target="#exampleModal">
     GOOD CASE     
   </button>
   
@@ -56,7 +59,7 @@
   </div>
         
   <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+<button type="button" class="abc" data-bs-toggle="modal" data-bs-target="#exampleModal2">
     BAD CASE
   </button>
 
@@ -88,17 +91,123 @@
       </div>
     </div>
   </div>
-        
         <p></p>
         </div>
-    <form method="POST" action="{% url 'ani:fileupload' %}" enctype="multipart/form-data">
+ {% comment %} <form method="POST" action="{% url 'ani:fileupload' %}" enctype="multipart/form-data">
         {% csrf_token %}
-        {% bootstrap_form fileuploadForm %}
+        <div class="filebox"> 
+          {{fileuploadForm}}
+          <input type="file" id="file", name = 'imgfile'> 
+          <input class="upload-name" value="파일선택">
+        </div>
+
         <input type="submit" class="btn-get-started" value="👉 CLICK HERE! 👈">
-    </form> 
+    </form> {% endcomment %}
+   
+<div id="root">
+  <h2 class="title">File Upload</h2>
+  <hr>
+    <form method="POST" action="{% url 'ani:fileupload' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+    <div id="root">
+      <div class="contents">
+        <div class="upload-box" name='imgfile'>
+          <div id="drop-file" class="drag-file" name = 'imgfile'>
+            <img src="https://img.icons8.com/pastel-glyph/2x/image-file.png" alt="파일 아이콘" class="image" name = 'imgfile'>
+            <p class="message">Drag files to upload</p>
+            <img src="" alt="미리보기 이미지" class="preview">
+          </div> 
+          <label class="file-label" for="chooseFile">Choose File</label>
+          <input class="file" id="chooseFile" name = 'imgfile' type="file" onchange="dropFile.handleFiles(this.files)" accept="image/png, image/jpeg, image/gif">
+          <input type="submit" class="btn-get-started" value="👉 CLICK HERE! 👈">
+        </div>
+      </div>
+    </div>
+    {% comment %} <input type="submit" class="btn-get-started" value="👉 CLICK HERE! 👈"> {% endcomment %}
+  </form>
+
+
+
+  <script>
+      function DropFile(dropAreaId, fileListId) {
+      let dropArea = document.getElementById(dropAreaId);
+      let fileList = document.getElementById(fileListId);
+    
+      function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    
+      function highlight(e) {
+        preventDefaults(e);
+        dropArea.classList.add("highlight");
+      }
+    
+      function unhighlight(e) {
+        preventDefaults(e);
+        dropArea.classList.remove("highlight");
+      }
+    
+      function handleDrop(e) {
+        unhighlight(e);
+        let dt = e.dataTransfer;
+        let files = dt.files;
+    
+        handleFiles(files);
+    
+        const fileList = document.getElementById(fileListId);
+        if (fileList) {
+          fileList.scrollTo({ top: fileList.scrollHeight });
+        }
+      }
+    
+      function handleFiles(files) {
+        files = [...files];
+        // files.forEach(uploadFile);
+        files.forEach(previewFile);
+      }
+    
+      function previewFile(file) {
+        console.log(file);
+        renderFile(file);
+      }
+    
+      function renderFile(file) {
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = function () {
+          let img = dropArea.getElementsByClassName("preview")[0];
+          img.src = reader.result;
+          img.style.display = "block";
+        };
+      }
+    
+      dropArea.addEventListener("dragenter", highlight, false);
+      dropArea.addEventListener("dragover", highlight, false);
+      dropArea.addEventListener("dragleave", unhighlight, false);
+      dropArea.addEventListener("drop", handleDrop, false);
+    
+      return {
+        handleFiles
+      };
+    }
+    
+    const dropFile = new DropFile("drop-file", "files");
+
+    
+  </script>
+
+
+
+
+
+
+
 
 </section>
-
+</div>
+</div>
 <section>
 </section>
 {% endblock%}
+

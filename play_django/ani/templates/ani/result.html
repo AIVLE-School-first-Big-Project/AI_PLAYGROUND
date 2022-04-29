@@ -3,17 +3,20 @@
 {% load bootstrap4 %}
 {% block content %}
 <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
-
+<div class='container'>
 <div class='ani_containerbox'>
     <div class="ani_text">
-		<h1 class = 'ani_c_t'> 당신의 결과는? </h1>
+		<h1 class = 'ani_c_t'> YOUR RESULT </h1>
         <p></p>
-        <h2 class = 'ani_c_t2'> WelCome To Animation </h2>
+        <h2 class = 'ani_c_t2'> ME TO ANI </h2>
     </div>
 <section>
     <div id='ani_form'>
     <img src = 'http://127.0.0.1:5000/static/{{filename}}' width='50%'>
     <p></p>
+    <br>
+        <br>
+
     만화 속 당신의 모습입니다!!
     <p></p>
     결과가 맘에 드시나요?? 다른 사진으로도 도전해보세요!
@@ -22,9 +25,11 @@
         <a class="btn-get-started" href="{% url 'ani:fileupload' %}">👉 Go Review 👈</a>
         <a class="btn-get-started" href="{% url 'ani:fileupload' %}">👉 TRY AGAIN 👈</a>
 </div>
+
 </section>
 
-
+</div>
+</div>
 
 
 

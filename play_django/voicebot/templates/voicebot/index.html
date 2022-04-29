@@ -1,27 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <br>
-    <br>
-    <!-- ======= Team Section ======= -->
-    <section id="team" class="team">
-        <div class="container"> 
-          <div class="row">
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-                <a href="./ai/">
-              <div class="member">
-                <img src="{% static 'voicebot/ai.png' %}" alt="">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
-                <p>
-                  Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
-                </p>
-              </div>
-            </a>
+  <br>
+  <br>
+  <!-- ======= Team Section ======= -->
+  <section id="team" class="team">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-4 col-md-6">
+          <a href="{% url 'voicebot:index' %}ai">
+            <div class="member">
+              <img src="{% static 'voicebot/ai.png' %}" alt="">
+              <h4>AI 1.0</h4>
+              <span>Voicebot</span>
+              <p>
+                AI PLAYGROUND의 첫 번째 보이스봇 모델입니다.
+              </p>
             </div>
-  
-          </div>
-  
+          </a>
         </div>
-      </section><!-- End Team Section -->
+      </div>
+    </div>
+  </section><!-- End Team Section -->
 {% endblock%}
