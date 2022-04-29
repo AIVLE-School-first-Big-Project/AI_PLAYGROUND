@@ -2,10 +2,12 @@
 {% load static %}
 {% load bootstrap4 %}
 {% block content %}
-<link href="{% static 'assets/css/style.css?afte' %}" rel="stylesheet"/>
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet"/>
 <div class = 'container'>
 <div class='ani_containerbox'>
+  
     <div class="ani_text">
+      
 		<h1 class = 'ani_c_t'> AI와 만화속으로 </h1>
         <p></p>
         <h2 class = 'ani_c_t2'> Me To Ani </h2>
@@ -13,7 +15,8 @@
 
     <section>
         <div id='ani_form'>
-        {% comment %} <img src = '/static/ani/imgs/namju.jpg' width='40%'> {% endcomment %}
+        <img src = '/static/ani/imgs/namju.jpg' width='40%'>
+        <br>
         <img src = '/static/ani/imgs/iu.jpg' width='40%'>
         <p></p>
         주의사항: 흐리거나 어두운 사진 x 증명 사진은 잘 안나와요 ㅠ 
@@ -100,7 +103,10 @@
 
         <input type="submit" class="btn-get-started" value="👉 CLICK HERE! 👈">
     </form> {% endcomment %}
-
+   
+<div id="root">
+  <h2 class="title">File Upload</h2>
+  <hr>
     <form method="POST" action="{% url 'ani:fileupload' %}" enctype="multipart/form-data">
       {% csrf_token %}
     <div id="root">
@@ -110,13 +116,14 @@
             <img src="https://img.icons8.com/pastel-glyph/2x/image-file.png" alt="파일 아이콘" class="image" name = 'imgfile'>
             <p class="message">Drag files to upload</p>
             <img src="" alt="미리보기 이미지" class="preview">
-          </div>
-          <label class="file-label" for="chooseFile">Choose File></label>
+          </div> 
+          <label class="file-label" for="chooseFile">Choose File</label>
           <input class="file" id="chooseFile" name = 'imgfile' type="file" onchange="dropFile.handleFiles(this.files)" accept="image/png, image/jpeg, image/gif">
+          <input type="submit" class="btn-get-started" value="👉 CLICK HERE! 👈">
         </div>
       </div>
     </div>
-    <input type="submit" class="btn-get-started" value="👉 CLICK HERE! 👈">
+    {% comment %} <input type="submit" class="btn-get-started" value="👉 CLICK HERE! 👈"> {% endcomment %}
   </form>
 
 
