@@ -1,5 +1,8 @@
-{% extends "user/base2.html"%}
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
 {% block content %}
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
 
 <style>
   #write_success {
@@ -10,10 +13,9 @@
 <div class="jumbotron">
   <div class="container text-center" id="write_success" style="margin-top:200px;">
     <h1>글 작성이 완료되었습니다.</h1>
-    <button type = "button" class = "btn btn-outline-light" onclick = "location.href='/reviews/list'"
-      style="margin-top:30px; padding-right:100px; padding-left:100px; font-weight:bold">
-      리뷰 목록으로
-  </button>
+    <button type="button" class="btn btn-info btn-lg btn-block" onclick="location.href='/board/list/'">
+      Go to Board
+    </button>
   </div>
 </div>
 

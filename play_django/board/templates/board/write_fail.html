@@ -1,5 +1,8 @@
-{% extends "user/base2.html"%}
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
 {% block content %}
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
 
 <style>
   #write_fail {
@@ -10,7 +13,7 @@
 <div class="jumbotron">
   <div class="container text-center" id="write_fail" style="margin-top:200px;">
     <h1>로그인 후 사용해주세요.</h1>
-    <button type = "button" class = "btn btn-outline-success" onclick = "location.href='/user/login'"
+    <button type = "button" class = "btn btn-outline-success" onclick = "location.href=''"
       style="margin-top:30px; padding-right:100px; padding-left:100px; font-weight:bold">
         로그인
     </button>

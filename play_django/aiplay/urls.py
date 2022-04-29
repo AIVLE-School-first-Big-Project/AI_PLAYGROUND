@@ -26,5 +26,6 @@ urlpatterns = [
     path('voicebot/', include('voicebot.urls')),
     path('pcolor/', include('pcolor.urls')),
     path('member/', include('member.urls')),
+    path('board/', include('board.urls')),  
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

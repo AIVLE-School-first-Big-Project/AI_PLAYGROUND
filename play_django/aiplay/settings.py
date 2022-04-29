@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'channels',
     'pcolor',
     'member',
+    'board',
     # 'storages',
     # 'rest_framework',
 
