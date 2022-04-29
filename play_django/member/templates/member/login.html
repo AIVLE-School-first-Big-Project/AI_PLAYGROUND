@@ -2,6 +2,26 @@
 {% load static %}
 {% block content %}
 
+    <script src="{% static 'assets/js/jwt-decode.js' %}"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        // jwt 토큰의 사용자 정보를 가져오는 참고용 코드
+        access_token = "{{ access_token }}"
+
+        decoded = jwt_decode(access_token)
+        user_id = decoded.user_id
+
+        localStorage.setItem('access_token', access_token)
+        localStorage.setItem('user_id', user_id)
+
+        console.log('console test: ')
+        console.log(localStorage.getItem('access_token'))
+        console.log(localStorage.getItem('user_id'))
+
+        // logout
+        // localStorage.clear()
+    </script>
+
     <div>
         <form action="{% url 'member:login' %}" method="post" role="form">
           {% csrf_token %}

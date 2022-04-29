@@ -35,7 +35,7 @@ def login(request):
             user.current_rftoken = refresh_token    # refresh_token 해시화 예정
             user.save()
 
-            template = loader.get_template('index.html')
+            template = loader.get_template('member/login.html')
             # (cookie) or variable or localStorage에 저장
             response = HttpResponse(template.render({'access_token': access_token}, request))  
             # XSS 방어를 위해 httponly=True 추가
