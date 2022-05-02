@@ -59,7 +59,7 @@ def get_chatbot_answer():
         input = {'chatbot_answer': chatbot_answer}
     
         try:
-            response = requests.post('http://127.0.0.1:5003/predict/', data=input)
+            response = requests.post('http://127.0.0.1:5003/predict', data=input)
             result = response.json()
         except:
             result = {'0':'0'}
