@@ -139,4 +139,10 @@
 </div>
 
 
+<script> 
+  function getID(id) {
+      window.location.href="{% url 'board:details' %}?id=" + id;
+  }
+</script>
+
 {% endblock %}
