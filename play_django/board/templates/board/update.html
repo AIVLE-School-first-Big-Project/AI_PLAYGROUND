@@ -31,10 +31,11 @@
             <div class="form-group">
                 <label for="body" style="font-size:150%; margin: 10px;">모델명:</label>
                 <select name="model_name" class="form-select" selected="model_name">
-                    <option value="{{ model_name }}">모델 이름 입력</option>
-                    <<option value="pcolor">pcolor</option>
-                    <option value="ani">ani</option>
-                    <option value="tts">tts</option>
+                    <option value="{{ board.model_name }}">현재: {{board.model_name}}</option>
+                    <option value="퍼스널컬러">퍼스널컬러</option>
+                    <option value="애니메이션화">애니메이션화</option>
+                    <option value="블리츠와전화데이트">블리츠와전화데이트</option>
+                    <option value="기타">기타</option>
                 </select>
             </div>
 

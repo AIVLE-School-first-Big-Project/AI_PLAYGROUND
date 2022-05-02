@@ -95,7 +95,7 @@ def list(request):
             Q(title__icontains=title)
         )
     model_name = request.GET.get('model_name', '')
-    if model_name:
+    if model_name and model_name != '전체':
         board_list = board_list.filter(
             Q(model_name__icontains=model_name)
         )
@@ -186,9 +186,9 @@ def if_logined(request):
 
 def boardcreate(request):
     # 게시글 200개 만들기
+    model_list = ['퍼스널컬러', '애니메이션화', '블리츠와전화데이트']
     for i in range(200):
         userid = User.objects.get(id=1)
-        Board.objects.create(user_id=userid, date='2020-12-12', model_name='pcolor',
+        Board.objects.create(user_id=userid, date=timezone.now(), model_name=model_list[i%3],
         title='title_'+str(i), body='body_'+str(i))
     return HttpResponse('데이터 입력 완료')
-    return HttpResponse(if_logined(request))
