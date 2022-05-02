@@ -1,13 +1,34 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
+<script src="{% static 'member/jwt-decode.js' %}"></script>
+<script>
+  access_token = "{{ access_token }}"
+
+  if (access_token === 'logout') {
+    localStorage.clear()
+    window.location.href =  "http://127.0.0.1:8000/"
+  }
+
+  decoded = jwt_decode(access_token)
+  user_id = decoded.user_id
+
+  localStorage.setItem('access_token', access_token)
+  localStorage.setItem('user_id', user_id)
+
+  if (access_token) {
+    window.location.href =  "http://127.0.0.1:8000/"
+  }
+</script>
+
 <br>
 <br>
 <section id="contact" class="contact">
   <div class="container">
     <div class="row d-flex justify-content-center">
       <div class='col-lg-3 col-md-6'>
-        <form action="{% url 'member:login' %}" method="post" role="form" class="php-email-form">
+        <form action="{% url 'member:login' %}" method="post" role="form">
           {% csrf_token %}
           <div class="row d-flex justify-content-center">
             <div class="col-md-12 form-group">
@@ -18,11 +39,6 @@
               <input type="password" class="form-control" name="password" id="password" placeholder="Password"
                 required="">
             </div>
-          </div>
-          <div class="my-3">
-            <div class="loading">Loading</div>
-            <div class="error-message"></div>
-            <div class="sent-message">Login Success</div>
           </div>
           <div class="text-center">
             <a href="{% url 'member:signup' %}">
@@ -35,4 +51,5 @@
     </div>
   </div>
 </section>
+
 {% endblock %}

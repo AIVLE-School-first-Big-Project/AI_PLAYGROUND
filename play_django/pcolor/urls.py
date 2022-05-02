@@ -8,6 +8,7 @@ from django.conf.urls.static import static
 app_name = 'pcolor'
 urlpatterns = [
     path('', views.fileUpload , name='pcimgupload'),
+    path('result/', views.download , name='download'),
 
-    # path('pcresult/', views.pcresult, name='pcresult'),
+ # path('pcresult/', views.pcresult, name='pcresult'),
 ]

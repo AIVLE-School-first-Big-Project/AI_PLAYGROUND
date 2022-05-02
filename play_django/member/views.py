@@ -35,7 +35,7 @@ def login(request):
             user.current_rftoken = refresh_token    # refresh_token 해시화 예정
             user.save()
 
-            template = loader.get_template('index.html')
+            template = loader.get_template('member/login.html')
             # (cookie) or variable or localStorage에 저장
             response = HttpResponse(template.render({'access_token': access_token}, request))  
             # XSS 방어를 위해 httponly=True 추가
@@ -87,8 +87,8 @@ def logout(request):
     except User.DoesNotExist as e:
         print(e)
 
-    template = loader.get_template('index.html')
-    response = HttpResponse(template.render(request=request))
+    template = loader.get_template('member/login.html')
+    response = HttpResponse(template.render({'access_token': 'logout'}, request))  
+    response.delete_cookie(key='refresh_token')  
 
-    response.delete_cookie(key='refresh_token')
     return response
