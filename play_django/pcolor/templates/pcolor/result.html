@@ -9,6 +9,14 @@
    padding-bottom: 280px;
     text-align: center;
  }
+
+ @font-face {
+    font-family: 'LeferiPoint-SpecialItalicA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-SpecialItalicA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
  @font-face {
     font-family: 'GangwonEdu_OTFBoldA';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
@@ -40,7 +48,8 @@
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 5px;
-  margin-top: 10px;
+  margin-top: 40px;
+
 }
 .re{
   border: 1px solid beige;
@@ -69,6 +78,37 @@
 
   color:#F9F9F9
 }
+
+#shareform,#sharesubmit{
+  display: none;
+}
+
+
+.swal-text{
+
+color: black;
+font-family: 'LeferiPoint-SpecialItalicA';
+font-size:28px
+
+}
+
+.swal-button{
+color: white;
+background-color: #FFAB73;
+
+}
+.swal-footer {
+  text-align: center;
+}
+
+button.swal-button.swal-button--confirm:hover{
+
+  background-color: #FEA82F;
+}
+
+button.swal-button.swal-button--confirm:focus{
+    outline: none;
+}  
 </style>
 <div class="container">
   <div class="containerbox">
@@ -80,6 +120,30 @@
 </div>
 
 
+  <div id="shareform">
+    <form action="{% url 'pcolor:share' %}" method="GET"  id="form">
+      <input type="hidden" name="pcolor" value="{{pcolor}}" >
+      <button class="btn" type="submit" value="Submit" id="sharesubmit"> <i class="far fa-bookmark fa-3x"></i></button>
+  </form> 
+</div>
+
+<ul class="sns" id="test">
+  <li class="facebook">
+  <a href="#n" onclick="fn_sendFB('facebook')" class="facebook" target="_self" title="페이스북 새창열림">
+    <img src="  https://ifh.cc/g/XZoTc1.png" />
+  </a>
+  </li>
+  <li class="twitter">
+  <a href="#n" onclick="fn_sendFB('twitter');" class="twitter" target="_self" title="트위터 새창열림"> 
+    <img src=" https://ifh.cc/g/hKyC3n.png" />      </a>
+  </li>
+  <li>
+    <a id="kakao-link-btn" href="javascript:kakaoShare()">
+      <img src="https://ifh.cc/g/XmklsW.png" />
+    </a>
+  </li>
+
+</ul>
 
 
 
@@ -102,38 +166,32 @@
       <input type="hidden" name="pcolor" value="{{pcolor}}" >
       <button class="btn" type="submit" value="Submit" id="submit"> <i class="far fa-bookmark fa-3x"></i></button>
   </form> 
-
-
-
 </li>
-
-
   </ul>
-          <ul class="sns" id="test">
-        <li class="facebook">
-        <a href="#n" onclick="fn_sendFB('facebook')" class="facebook" target="_self" title="페이스북 새창열림">
-          <img src="  https://ifh.cc/g/XZoTc1.png" />
-        </a>
-        </li>
-        <li class="twitter">
-        <a href="#n" onclick="fn_sendFB('twitter');" class="twitter" target="_self" title="트위터 새창열림"> 
-          <img src=" https://ifh.cc/g/hKyC3n.png" />      </a>
-        </li>
-        <li>
-          <a id="kakao-link-btn" href="javascript:kakaoShare()">
-            <img src="https://ifh.cc/g/XmklsW.png" />
-          </a>
-        </li>
-  
-    </ul>
+
+
+
+
+         
     </div>
     </div>
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
 
 <script type="text/javascript">
-  var result="{{pcolor}}";
+history.pushState(null, null, "http://127.0.0.1:8000/pcolor/");
+window.onpopstate = function(event) {
+history.go(1);
+swal('뒤로가기 버튼을 눌러주세요' );
+
+};
+
+
+var result="{{pcolor}}";
   console.log(result)
   if (result == 'fail'){
     document.getElementById('test').style.display='none'
@@ -141,15 +199,24 @@
     $(".re").css('background-color','#ABC6FF');
   }else if(result.includes('spring')){
     $(".re").css('background-color','#FAF0AF');
+    $(".sns").css('background-color','#FAF0AF');
+
   }
     else if(result.includes('summer')){
     $(".re").css('background-color','#C9DEFF');
+    $(".sns").css('background-color','#C9DEFF');
+
     }
     else if(result.includes('fall')){
     $(".re").css('background-color','#FFD19F');
+    $(".sns").css('background-color','#FFD19F');
+
+    
     }
     else if(result.includes('winter')){
     $(".re").css('background-color','#D3DAE5');
+    $(".sns").css('background-color','#D3DAE5');
+
     }
   
 
@@ -177,10 +244,17 @@
       },
       buttons: [
         {
-          title: '테스트하러가기',
+          title: '테스트',
           link: {
             mobileWebUrl:'http://127.0.0.1:8000/pcolor/',
             webUrl:'http://127.0.0.1:8000/pcolor/',
+          },
+        },
+        {
+          title: '결과보기',
+          link: {
+            mobileWebUrl:'http://127.0.0.1:8000/pcolor/',
+            webUrl:'http://127.0.0.1:8000/pcolor/result/?pcolor={{pcolor}}',
           },
         },
       ],
@@ -192,11 +266,11 @@
     var thisUrl = document.URL;
     var snsTitle = "퍼스널컬러진단하기";
     if( sns == 'facebook' ) {
-        var url = "http://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent('http://127.0.0.1:8000/pcolor/');
+        var url = "http://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent('http://127.0.0.1:8000/pcolor/result/?pcolor={{pcolor}}');
         window.open(url, "", "width=486, height=286");
     }
     else if( sns == 'twitter' ) {
-        var url = "http://twitter.com/share?url="+encodeURIComponent('http://127.0.0.1:8000/pcolor/')+"&text="+encodeURIComponent(snsTitle);
+        var url = "http://twitter.com/share?url="+encodeURIComponent('http://127.0.0.1:8000/pcolor/result/?pcolor={{pcolor}}')+"&text="+encodeURIComponent(snsTitle);
         window.open(url, "tweetPop", "width=486, height=286,scrollbars=yes");
     }
   }
