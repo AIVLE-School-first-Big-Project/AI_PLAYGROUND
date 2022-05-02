@@ -14,7 +14,7 @@ def predict_pcolor(image_path):
     model.load_state_dict(torch.load('effi.pth', map_location=device))
     classes=['falldeep','fallmute','fallstrong','springbright','springlight', 'summerbright',
     'summerlight','summermute','winterbright','winterdeep']
-    img = Image.open(f'./{image_path}')
+    img = Image.open(f'media/{image_path}')
     transform_norm = transforms.Compose([transforms.ToTensor(), 
     transforms.Resize((224,224)),transforms.Normalize( [0.485, 0.456, 0.406] , [0.229, 0.224, 0.225])])
     img_normalized = transform_norm(img).float()
@@ -25,5 +25,5 @@ def predict_pcolor(image_path):
         output =model(img_normalized)
         index = output.data.cpu().numpy().argmax()
         class_name = classes[index]
-        os.remove(f'./{image_path}')
+        # os.remove(f'media/{image_path}')
         return class_name

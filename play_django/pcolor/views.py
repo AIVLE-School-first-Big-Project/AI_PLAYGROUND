@@ -7,17 +7,21 @@ from .forms import pcimgUploadForm
 from .models import pcimgUpload
 import os
 from django.conf import settings
-
+import time
+import datetime
 
 def fileUpload(request):
     if request.method == 'POST':
         img = request.FILES["image"]
-
+        ntime = datetime.datetime.now()
+        time = datetime.datetime.strftime(ntime, '%Y%m%d%H%M%S')
+        img.name=time+'.'+img.name.split('.')[1]
         fileupload = pcimgUpload(
         image=img
         )
         fileupload.save()
         files=open("media/pcolor/"+img.name, 'rb')
+
         upload = {'file': files,
                 'filename':img.name
         }
@@ -44,3 +48,19 @@ def download(request):
             response['Content-Disposition'] = 'attachment; filename=%s' % filename        
     return response
 
+
+# def share(request):
+#     if request.method == 'GET':
+#         pcolor = request.GET.get('pcolor', '')
+#         context = {
+#             'pcolor': pcolor,
+#         }       
+#     return render(request, 'pcolor/result.html',context)
+
+def share(request):
+    if request.method == 'GET':
+        pcolor = request.GET.get('pcolor', '')
+        context = {
+            'pcolor': pcolor,
+        }
+    return  render(request, 'pcolor/result.html',context)
