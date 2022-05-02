@@ -186,8 +186,8 @@ def if_logined(request):
 def boardcreate(request):
     # 게시글 200개 만들기
     for i in range(200):
-        userid = User.objects.get(id==0)
+        userid = User.objects.get(id=1)
         Board.objects.create(user_id=userid, date='2020-12-12', model_name='pcolor',
-        title='title_'+i, body='body_'+i)
+        title='title_'+str(i), body='body_'+str(i))
     return HttpResponse('데이터 입력 완료')
     return HttpResponse(if_logined(request))
