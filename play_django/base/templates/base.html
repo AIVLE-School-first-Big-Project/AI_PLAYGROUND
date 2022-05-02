@@ -76,9 +76,9 @@
           <li><a class="active" href="http://127.0.0.1:8000">Home</a></li>
           <li class="dropdown"><a href="#"><span>AI 기구</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="#">퍼스널컬러</a></li>
-              <li><a href="#">애니메이션화</a></li>
-              <li><a href="#">블리츠와전화데이트</a></li>
+              <li><a href="{% url 'pcolor:pcimgupload' %}">퍼스널컬러</a></li>
+              <li><a href="{% url 'ani:fileupload' %}">애니메이션화</a></li>
+              <li><a href="{% url 'voicebot:index' %}">블리츠와전화데이트</a></li>
             </ul>
           </li>
           <li><a href="/board/list">게시판</a></li>
