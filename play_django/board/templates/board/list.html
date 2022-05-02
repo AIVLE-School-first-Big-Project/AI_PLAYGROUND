@@ -128,21 +128,15 @@
       </ul>
     </div>
   </body>
-</form>
-</div>
-{% if is_user %}
+  {% if is_user %}
   <div id="list" style='text-align:center;'>
     <form action="{% url 'board:write' %}" >
       <button>글쓰기</button>
     </form>
   </div>
 {% endif %}
+</form>
+</div>
 
-
-<script> 
-  function getID(id) {
-      window.location.href="{% url 'board:details' %}?id=" + id;
-  }
-</script>
 
 {% endblock %}
