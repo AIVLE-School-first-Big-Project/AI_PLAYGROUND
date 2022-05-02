@@ -34,20 +34,16 @@ def write(request):
 
 
 def delete(request, id):
-    ''
-#     context = {}
-#     if if_session(request):
-#         context['user_session_id'], context['user_session_veg_type'] = if_session(request)
-#     try:
-#         review = Review.objects.get(id=id)
-#         review.delete()
+    try:
+        board = Board.objects.get(id=id)
+        board.delete()
 
-#         return render(request, 'reviews/delete_success.html', context)
+        return render(request, 'board/delete_success.html')
     
-#     except:
-#         return render(request, 'reviews/delete_fail.html', context)
+    except:
+        return render(request, 'board/delete_fail.html')
 
-# # 세션 추가
+
 def update(request, id):
     context={}
     board = Board.objects.get(id=id)
@@ -119,6 +115,10 @@ def list(request):
     if end_page > p.num_pages:
         end_page = p.num_pages  
 
+    is_user = False
+    if if_logined(request) is not None:
+        is_user = True
+
     context = {
     'info' : info,
     'now_page' : now_page,
@@ -130,6 +130,7 @@ def list(request):
     'user_id' : user_id,
     'title' : title,
     'model_name' : model_name,
+    'is_user' : is_user
     }
     
 

@@ -39,14 +39,14 @@
                 </div>
             {% endif %} {% endcomment %}
 
-            <div id="model_name" class="col-md-3">
+            <div class="form-group">
                 <select name="model_name" class="form-select" selected="model_name">
-                    <option value="{{ form.model_name.value | default_if_none:'' }}">모델 이름 입력</option>
-                    <<option value="{{ form.model_name.value | default_if_none:'' }}">pcolor</option>
-                    <option value="{{ form.model_name.value | default_if_none:'' }}">ani</option>
-                    <option value="{{ form.model_name.value | default_if_none:'' }}">tts</option>
+                    <option value='' disabled selected>모델 이름 입력</option>
+                    <<option value="{{ pcolor }}">pcolor</option>
+                    <option value="{{ ani }}">ani</option>
+                    <option value="{{ tts }}">tts</option>
                 </select>
-            </div>   
+            </div>
              
             <div class="form-group">
                 <label for="body" style="font-size:150%; margin: 10px;">내용</label>
