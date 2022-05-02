@@ -4,8 +4,10 @@ import requests
 import json
 from django.http import HttpResponse,JsonResponse
 from .forms import pcimgUploadForm
-from .models import pcimgUpload,pcsave
-from member.models import User
+from .models import pcimgUpload
+import os
+from django.conf import settings
+
 
 def fileUpload(request):
     if request.method == 'POST':
@@ -30,19 +32,15 @@ def fileUpload(request):
         }
     return render(request, 'pcolor/phome.html', context)
 
-def save(request): 
-    if request.is_ajax():
-        user_id = request.GET['user_id']
-        if not request.user.is_authenticated: 
-            message = "로그인이 필요합니다" 
-            context = {"message":message} 
-            return HttpResponse(json.dumps(context), content_type='application/json')
-        user = request.user
-        if pcsave.save.filter(id = User.user_id).exists(): 
-           pcsave.save.remove(user) 
-           message = "저장 취소" 
-        else:
-            pcsave.save(user_id)
-            message = "저장" #화면에 띄울 메세지
-        context = {"message":message}
-        return HttpResponse(json.dumps(context), content_type='application/json')  
+
+def download(request):
+    if request.method == 'GET':
+        pcolor = request.GET.get('pcolor', '')
+        filepath = str(settings.BASE_DIR) + ('\\pcolor\\static\\pcolor\\imgs\\%s' % pcolor+".jpg")
+        print(filepath)
+        filename = os.path.basename(filepath)
+        with open(filepath, 'rb') as f:
+            response = HttpResponse(f, content_type='application/octet-stream')
+            response['Content-Disposition'] = 'attachment; filename=%s' % filename        
+    return response
+

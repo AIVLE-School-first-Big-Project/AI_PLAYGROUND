@@ -3,14 +3,11 @@
 {% load bootstrap4 %}
 {% block content %}
 
-<!-- bcolor  연보라 or 그라 -->
-<!-- D9D7F1 연보라 -->
-<!--그라 background: linear-gradient(to right, #ddd6f3, #faaca8); -->
 <style>
  .containerbox {
-  background: linear-gradient(to right, #ddd6f3, #faaca8);
-  padding-bottom: 700px;
-    text-align: center;
+  background-color: white;
+  padding-bottom: 250px;
+  text-align: center;
  }
 
  @font-face {
@@ -34,15 +31,33 @@
  }
  #form{
    padding-top: 30px;
-  display: inline-block;
-    font-family: 'GangwonEdu_OTFBoldA';
-    text-align:center
+   font-family: 'GangwonEdu_OTFBoldA';
+   text-align:center
  }
  img {
- height: 50%;
- width: 50%;
+ height: 40%;
+ width: 40%;
  object-fit: scale-down;
+  border-radius: 8%;
 }
+
+#pcform{
+
+margin-top: 20px;
+}
+
+#pcimg{
+    display: inline-block;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 78%;
+    color: #999999;
+}
+
+
+
 
 .swal-text{
 
@@ -54,52 +69,119 @@ font-size:30px
 
 .swal-button{
 color: white;
-background-color: #ddd6f3;
+background-color: #FFAB73;
 
 }
 .swal-footer {
   text-align: center;
 }
 
+button.swal-button.swal-button--confirm:hover{
+
+  background-color: #FEA82F;
+}
+
+button.swal-button.swal-button--confirm:focus{
+    outline: none;
+}  
 
 
+#form .upload-name {
+    display: inline-block;
+    height: 50px;
+    padding: 0 30px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 25%;
+    color: #999999;
+    border-radius: 10px;
+}
 
- .btn-grad {background-image: linear-gradient(to right, #ddd6f3 0%, #faaca8  51%)}
+input:focus {outline:2px solid #FEA82F;}
+
+#form label {
+    display: inline-block;
+    padding: 18px 20px 0px 20px;
+    /* color: #fff; */
+    vertical-align: middle;
+    /* background-color: #FEA82F; */
+    background-color: #fff;
+    color: #FEA82F;
+    cursor: pointer;
+    height: 50px;
+    margin-left: 10px;
+    border-radius: 10px;
+    border: solid 1px #FEA82F;
+
+}
+
+#form label:hover{
+  background-color: #FEA82F;
+  color: #fff;
+  
+
+
+}
+#form input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+
+
+#form button[type="submit"] {
+    display: block;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
 .btn-grad {
   margin: 50px;
-  padding: 15px 45px;
+  padding: 5px 45px;
   text-align: center; 
   text-transform: uppercase;
   transition: 0.5s;
   background-size: 200% auto;
-  color: white;            
+  background-color: white;
+  color: #FEA82F;            
   border-radius: 10px;
   display: block;
   font-size:25px;
+  padding-top: 10px;
+  border-style: none;
+  border: solid 1px #FEA82F;
 
   }
 
   .btn-grad:hover {
   background-position: right center; /* change the direction of the change here */
   color: #fff;
+  background-color: #FEA82F;
   text-decoration: none;
   }
-         
+
 </style>
 <div class="container" id="b">
   <div class="containerbox">
     <div class="imgbox">
-          <img src="{%static 'pcolor/imgs/test2.jpg' %}">  
+          <img src="{%static 'pcolor/imgs/test3.jpg' %}">  
     </div>
       <div>
       </div>
     <div id="form">
       <form action="{% url 'pcolor:pcimgupload' %}" method="POST" enctype="multipart/form-data" id="pcform">
         {% csrf_token %}
-      <input type="file" name="image" id="pcimg" accept=".png,.jpg" onchange="checkFile(this)">
-        <button class="btn-grad" type="submit" value="Submit" id="submit"  data-toggle="modal" data-target="#exampleModal"  >테스트 하기 </button>
+
+        <input class="upload-name" value="사진을 첨부해주세요📷" placeholder="사진을 첨부해주세요📷"> <label for="pcimg">파일 찾기</label> <input type="file" name="image" id="pcimg" accept=".png,.jpg" onchange="checkFile(this)">
+
+        <button class="btn-grad" type="submit" value="Submit" id="submit">테스트 하기 </button>
     </form> 
     </div>
+
+
    </div>
   </div>
 </div>
@@ -107,8 +189,16 @@ background-color: #ddd6f3;
 
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
+$("#pcimg").on('change',function(){
+  var fileName = $("#pcimg").val();
+  var name=fileName.substring(fileName.lastIndexOf('\\') + 1);
+  $(".upload-name").val(name);
+  $(".upload-name").css('color','orange');
+  
 
+});
 
 function checkFile(f){
 var file = f.files;
@@ -123,15 +213,10 @@ document.getElementById("submit").onclick = function(e) {
     e.preventDefault();
 
   swal({
-  text: "사진을 첨부해주세요 👻"
+  text: "사진을 첨부해주세요📸"
 })
  }
-
 }
-
-
-</script>
-
 
 </script>
 

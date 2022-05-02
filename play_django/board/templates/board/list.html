@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+<style>
+  .pagination {
+    display: inline-block;
+  }
+  
+  .pagination a {
+    color: white;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  #res_name {
+    cursor: pointer;
+  }
+
+  #list {
+      font-family: 'S-CoreDream-4Regular';
+  }
+</style>
+
+<div class="container" id="list" style="margin-bottom: 10px; margin-top:10px">
+  <form method="GET" action="{% url 'board:list' %}" class="row g-2 justify-content-center">
+
+ 
+      <div id="user_id" class="col-md-3">
+          {% if user_id %}
+              <input class="form-control" name="user_id" type="text" value="{{ user_id }}">
+          {% else %}
+              <input class="form-control" name="user_id" type="text" placeholder="작성자 입력">
+          {% endif %}
+      </div> 
+
+      <div id="title" class="col-md-3">
+          {% if title %}
+              <input class="form-control" name="title" type="text" value="{{ title }}">
+          {% else %}
+              <input class="form-control" name="title" type="text" placeholder="제목 입력">
+          {% endif %}
+      </div> 
+
+      <div id="model_name" class="col-md-3">
+          <select name="model_name" class="form-select" selected="model_name">
+              {% if model_name %}
+                  <option value='' disabled selected>{{ model_name }}</option>
+              {% else %}
+                  <option value='' disabled selected>모델 이름 입력</option>
+              {% endif %}
+              <<option value="pcolor">pcolor</option>
+              <option value="ani">ani</option>
+              <option value="tts">tts</option>
+          </select>
+      </div>
+
+
+      <div class="col-md-1">
+          <button class="btn btn-light" type="submit">검색</button>
+      </div>
+
+  </form>
+</div>
+
+<div class="container" id="list">
+<form id='fm' method="GET" action="{% url 'board:details' %}">
+  <body style='overflow:scroll'>
+    <table class='table table-hover'>
+      <colgroup>
+        <col width="100px">
+        <col width="150px">
+        <col width="200px">
+        <col width="200px">
+        <col width="200px">
+    </colgroup>
+    <tr>
+      <th scope="col" style='text-align:center;'>게시글 번호</th>
+      <th scope="col" style='text-align:center;'>작성자</th>
+      <th scope="col" style='text-align:center;'>제목</th>
+      <th scope="col" style='text-align:center;'>모델 이름</th>
+      <th scope="col" style='text-align:center;'>작성(수정)일자</th>
+    </tr>
+    {% for item in info %}
+    <tr>
+      <td id="res_name" name="item.id" style='text-align:center;'><p onclick="getID('{{ item.id }}')">{{ item.id }}</p></td>
+      {% if item.user_id is not None %}
+        <td id="res_name" name="item.user_id" style='text-align:center;'><p onclick="getID('{{ item.id }}')">{{ item.user_id }}</p></td>
+      {% else %}
+        <td id="res_name" name="item.user_id" style='text-align:center;'><p onclick="getID('{{ item.id }}')">(알 수 없음)</p></td>
+      {% endif %}
+      <td id="res_name" name="item.title" style='text-align:center;'><p onclick="getID('{{ item.id }}')">{{ item.title }}</p></td>
+      <td id="res_name" name="item.model_name" style='text-align:center;'><p onclick="getID('{{ item.id }}')">{{ item.model_name }}</p></td>
+      <td id="res_name" name="item.date" style='text-align:center;'><p onclick="getID('{{ item.id }}')">{{ item.date }}</p></td>
+    </tr>
+    {% endfor %}
+    </table>
+
+
+    <div style='text-align:center;'>
+      <ul class='pagination'>
+        {% if has_previous %}
+          <a href='{% url "board:list" %}?page={{ start_page | add:"-1" }}&user_id={{ user_id }}&title={{ title }}' style="color: gray">
+            {{ "[Prev]" }}
+          </a>
+        {% endif %}
+
+        {% for i in page_range %}
+          {% if i == now_page %}
+            <a href='{% url "board:list" %}?page={{ i }}&user_id={{ user_id }}&title={{ title }}' style="color: red">
+              {{ i }}
+            </a>
+          {%else %}
+            <a href='{% url "board:list" %}?page={{ i }}&user_id={{ user_id }}&title={{ title }}' style="color: gray">
+              {{ i }}
+            </a>
+          {% endif %}
+        {% endfor %}
+        
+        {% if has_next%}
+          <a href='{% url "board:list" %}?page={{ end_page | add:"+1" }}&user_id={{ user_id }}' style="color: gray">
+            {{ "[Next]" }}
+          </a>
+        {% endif %}
+
+      </ul>
+    </div>
+  </body>
+</form>
+</div>
+
+<div id="list" style='text-align:center;'>
+  <form action="{% url 'board:write' %}" >
+    <button>글쓰기</button>
+  </form>
+</div>
+
+
+<script> 
+  function getID(id) {
+      window.location.href="{% url 'board:details' %}?id=" + id;
+  }
+</script>
+
+{% endblock %}

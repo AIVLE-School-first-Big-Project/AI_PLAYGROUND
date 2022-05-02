@@ -3,44 +3,34 @@
 {% load static %}
 {% load bootstrap4 %}
 {% block content %}
-
-
 <style>
  .containerbox {
-
    background-color:#F9F9F9;
-   padding-bottom: 800px;
+   padding-bottom: 280px;
     text-align: center;
  }
-
- 
  @font-face {
     font-family: 'GangwonEdu_OTFBoldA';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
-
 @font-face {
     font-family: 'EliceDigitalBaeum-Bd';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_elice@1.0/EliceDigitalBaeum-Bd.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
-
-
 .imgbox{
-    padding-top: 60px;
+    padding-top: 80px;
    text-align:center
 }
-
 #resultimg {
- height: 60%;
- width: 60%;
+ height: 50%;
+ width: 50%;
  object-fit: scale-down;
+ border-radius: 6%;
 }
-
-
 .sns{
   background-color: white;
   list-style:none;
@@ -51,45 +41,73 @@
   padding-bottom: 10px;
   border-radius: 5px;
   margin-top: 10px;
-
 }
 .re{
-  background-color: #FBD6D2;
+  border: 1px solid beige;
+  background-color: orange;
   list-style:none;
   display: table;
   margin-left: auto;
   margin-right: auto;
-  /* padding-top: 30px; */
-  /* padding-bottom: 30px; */
-  /* border-radius: 50%; */
   padding-top: 10px;
   padding-bottom: 10px;
-  border-radius: 10px;
-  margin-top: 10px;
+  border-radius: 8%;
+  margin-top: 40px;
 
 }
- 
+
+#result{
+  visibility : hidden;
+}
+
 .sns li,.re li {
   float: left;
     margin-right: 30px;
 }
+
+.far{
+
+  color:#F9F9F9
+}
 </style>
 <div class="container">
-
   <div class="containerbox">
-
     <div class="imgbox">
       <img src="{% get_static_prefix %}pcolor/imgs/{{pcolor}}.jpg" id="resultimg">  
+
+
+
 </div>
-      
+
+
+
+
+
+
+
+
 
 
 <ul class="re" id="retest">
   <li class="retest">
   <a href="http://127.0.0.1:8000/pcolor/">
-    <img src="{%static 'pcolor/imgs/wundo.png' %}" width="50px" height="50px" />
-  </a>
-  </li>
+
+    <img src="{%static 'pcolor/imgs/wundo.png' %}" width="50px" height="58px" />
+  </a>  
+</li>
+
+<li id="liform">
+  <div id="form">
+    <form action="{% url 'pcolor:download' %}" method="GET"  id="form">
+      <input type="hidden" name="pcolor" value="{{pcolor}}" >
+      <button class="btn" type="submit" value="Submit" id="submit"> <i class="far fa-bookmark fa-3x"></i></button>
+  </form> 
+
+
+
+</li>
+
+
   </ul>
           <ul class="sns" id="test">
         <li class="facebook">
@@ -112,13 +130,35 @@
     </div>
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
 <script type="text/javascript">
   var result="{{pcolor}}";
   console.log(result)
   if (result == 'fail'){
     document.getElementById('test').style.display='none'
+    document.getElementById('liform').style.display='none'
+    $(".re").css('background-color','#ABC6FF');
+  }else if(result.includes('spring')){
+    $(".re").css('background-color','#FAF0AF');
   }
+    else if(result.includes('summer')){
+    $(".re").css('background-color','#C9DEFF');
+    }
+    else if(result.includes('fall')){
+    $(".re").css('background-color','#FFD19F');
+    }
+    else if(result.includes('winter')){
+    $(".re").css('background-color','#D3DAE5');
+    }
+  
 
+
+
+
+
+  
+  
 
 
   Kakao.init('fc59acf1c10bdd447a92baecf5fa628a');
@@ -160,21 +200,8 @@
         window.open(url, "tweetPop", "width=486, height=286,scrollbars=yes");
     }
   }
-  
 
-
-
-
-
-
-
-
-
-
-
-
-
-    </script>
+  </script>
 
 
   

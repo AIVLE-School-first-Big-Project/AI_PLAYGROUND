@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet"/>
+<div class = 'container'>
+<div class='ani_containerbox'>
+  
+    <div class="ani_text">
+      
+		<h1 class = 'ani_c_t'> AI와 만화속으로 </h1>
+        <p></p>
+        <h2 class = 'ani_c_t2'> Me To Ani </h2>
+    </div>
+
+    <section>
+        <div id='ani_form'>
+        <img src = '/static/ani/imgs/namju.jpg' width='40%'>
+        <br>
+        <img src = '/static/ani/imgs/iu.jpg' width='40%'>
+        <p></p>
+        주의사항: 흐리거나 어두운 사진 x 증명 사진은 잘 안나와요 ㅠ 
+        <p></p>
+<!-- Button trigger modal -->
+<button type="button" class="abc" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    GOOD CASE     
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">잘 나온 사례</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src = '/static/ani/imgs/good/g1.jpg' width=70%>
+          <p>
+          <p> 엄청 잘 변환 되진 않았지만 이 정도 밝기가 적당합니다.</p>
+          <img src = '/static/ani/imgs/good/g2.jpg' width=70%>
+          <p>
+          <p> 남들이 찍어준 사진보다 직접 찍은 셀카 결과가 좋았습니다. </p>
+          <img src = '/static/ani/imgs/good/g3.jpg' width=70%>
+          <p>
+          <p> 전체적으로 모든 픽셀이 밝고 정면이라 잘 나온것 같습니다. </p>
+          <img src = '/static/ani/imgs/good/g4.jpg' width=70%>
+          <p>
+          <p> 밝기와 얼굴 방향이 이상적입니다. </p>
+
+          
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+        
+  <!-- Button trigger modal -->
+<button type="button" class="abc" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+    BAD CASE
+  </button>
+
+    <!-- Modal -->
+  <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabe2" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabe2">안 좋은 사례</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <img src = '/static/ani/imgs/bad/bad1.jpg' width=70%>
+            <p>
+            <p> 어두운 부분을 잘 인식하지 못합니다. </p>
+            <img src = '/static/ani/imgs/bad/bad2.jpg' width=70%>
+            <p>
+            <p> 화질이 안 좋은 사진에 대해서 잘 변환하지 못합니다. </p>
+            <img src = '/static/ani/imgs/bad/bad3.jpg' width=70%>
+            <p>
+            <p> 흑인은 학습하지 못했습니다ㅠㅠ </p>
+            <img src = '/static/ani/imgs/bad/bad4.jpg' width=70%>
+            <p>
+            <p> 잘 나온 편이지만 음영의 중요성을 알립니다. </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+        <p></p>
+        </div>
+ {% comment %} <form method="POST" action="{% url 'ani:fileupload' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="filebox"> 
+          {{fileuploadForm}}
+          <input type="file" id="file", name = 'imgfile'> 
+          <input class="upload-name" value="파일선택">
+        </div>
+
+        <input type="submit" class="btn-get-started" value="👉 CLICK HERE! 👈">
+    </form> {% endcomment %}
+   
+<div id="root">
+  <h2 class="title">File Upload</h2>
+  <hr>
+    <form method="POST" action="{% url 'ani:fileupload' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+    <div id="root">
+      <div class="contents">
+        <div class="upload-box" name='imgfile'>
+          <div id="drop-file" class="drag-file" name = 'imgfile'>
+            <img src="https://img.icons8.com/pastel-glyph/2x/image-file.png" alt="파일 아이콘" class="image" name = 'imgfile'>
+            <p class="message">Drag files to upload</p>
+            <img src="" alt="미리보기 이미지" class="preview">
+          </div> 
+          <label class="file-label" for="chooseFile">Choose File</label>
+          <input class="file" id="chooseFile" name = 'imgfile' type="file" onchange="dropFile.handleFiles(this.files)" accept="image/png, image/jpeg, image/gif">
+          <input type="submit" class="btn-get-started" value="👉 CLICK HERE! 👈">
+        </div>
+      </div>
+    </div>
+    {% comment %} <input type="submit" class="btn-get-started" value="👉 CLICK HERE! 👈"> {% endcomment %}
+  </form>
+
+
+
+  <script>
+      function DropFile(dropAreaId, fileListId) {
+      let dropArea = document.getElementById(dropAreaId);
+      let fileList = document.getElementById(fileListId);
+    
+      function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    
+      function highlight(e) {
+        preventDefaults(e);
+        dropArea.classList.add("highlight");
+      }
+    
+      function unhighlight(e) {
+        preventDefaults(e);
+        dropArea.classList.remove("highlight");
+      }
+    
+      function handleDrop(e) {
+        unhighlight(e);
+        let dt = e.dataTransfer;
+        let files = dt.files;
+    
+        handleFiles(files);
+    
+        const fileList = document.getElementById(fileListId);
+        if (fileList) {
+          fileList.scrollTo({ top: fileList.scrollHeight });
+        }
+      }
+    
+      function handleFiles(files) {
+        files = [...files];
+        // files.forEach(uploadFile);
+        files.forEach(previewFile);
+      }
+    
+      function previewFile(file) {
+        console.log(file);
+        renderFile(file);
+      }
+    
+      function renderFile(file) {
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = function () {
+          let img = dropArea.getElementsByClassName("preview")[0];
+          img.src = reader.result;
+          img.style.display = "block";
+        };
+      }
+    
+      dropArea.addEventListener("dragenter", highlight, false);
+      dropArea.addEventListener("dragover", highlight, false);
+      dropArea.addEventListener("dragleave", unhighlight, false);
+      dropArea.addEventListener("drop", handleDrop, false);
+    
+      return {
+        handleFiles
+      };
+    }
+    
+    const dropFile = new DropFile("drop-file", "files");
+
+    
+  </script>
+
+
+
+
+
+
+
+
+</section>
+</div>
+</div>
+<section>
+</section>
+{% endblock%}

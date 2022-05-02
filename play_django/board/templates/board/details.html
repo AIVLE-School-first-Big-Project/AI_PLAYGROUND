@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+<head>
+    <style>
+        #body, #title {
+            font-family: 'S-CoreDream-3Light';
+        }
+
+        .button{
+            font-family: 'S-CoreDream-5Medium';
+        }
+
+        #detail {
+            font-family: 'S-CoreDream-4Regular';
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="detail" style="margin-top:30px">
+    <table class='table table-striped'>
+        <tr id="table_h" style="font-family: 'S-CoreDream-5Medium';">
+            <th>게시글 번호</th>
+            <th>작성자</th>
+            <th>모델 이름</th>
+            <th>작성(수정)일자</th>
+        </tr>
+    
+        <tr style="font-family: 'S-CoreDream-4Regular';">
+            <td>{{ board.id }}</td>
+
+            {% if board.user_id %}
+                <td>{{ board.user_id.user_id }}</td>
+            {% else %}
+                <td>(알 수 없음)</td>
+            {% endif %}
+
+            <td>{{ board.model_name }}</td>
+            <td>{{ board.date }}</td>
+        </tr>
+    </table>
+
+    <label for="title" style="font-size:150%; font-family: 'S-CoreDream-5Medium';">제목:</label>
+        <input type="text" class="form-control" name="title" 
+            id="title" value="{{ board.title }}">
+
+    <label for="body" style="font-size:150%; margin-top: 10px; font-family: 'S-CoreDream-5Medium';">내용:</label>
+        <textarea class="form-control" rows="10" name="body" 
+            id="body"> {{ board.body }}
+        </textarea>
+
+    <br>
+    {% if board.file %}
+        <img src='{{ board.file.url }}' width='20%'>
+        <br>
+        <br>
+        <div style="float: left;">
+            <form action="{% url 'board:download' id=id %}">
+                <button class="btn btn-success" style="margin-left:20px; padding:10px 50px;">다운로드</button>
+            </form>
+        </div>
+    {% endif %}
+
+    {% if is_logined %}
+        <div style="float: right;">
+            <form action="{% url 'board:update' id=id %}">
+                <button class="btn btn-success" style="margin-left:20px; padding:10px 50px; font-family: 'S-CoreDream-4Regular';">수정</button>
+            </form>
+        </div>
+        <div style="float: right;">
+            <form action="{% url 'board:delete' id=id %}">
+                <button class="btn btn-success" style="padding:10px 50px; font-family: 'S-CoreDream-4Regular';">삭제</button>
+            </form>
+        </div>
+
+    {% endif %}
+
+
+
+
+    </div>
+</body>
+
+{% endblock %}

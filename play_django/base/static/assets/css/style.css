@@ -481,7 +481,7 @@ h1, h2, h3, h4, h5, h6 {
 # Sections General
 --------------------------------------------------------------*/
 section {
-  padding: 0 0 80px 0;
+  padding: 0 0 50px 0;
 }
 
 .section-bg {
@@ -1938,11 +1938,10 @@ text-align:center ;
 .btn-get-started {
    font-family: "Raleway", sans-serif;
    font-weight: 500;
-   font-size: 16px;
+   font-size: 14px;
    letter-spacing: 1px;
-   display: inline-block;
-   padding: 12px 32px;
-   border-radius: 50px;
+   padding: 4px 15px;
+   border-radius: 6px;
    transition: 0.5s;
    line-height: 3;
    margin: 10px;
@@ -1952,6 +1951,23 @@ text-align:center ;
    border: 2px solid #e96b56;
    background: #e96b56;
  }
+
+ .btn-get-started2 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 15px 15px;
+  border-radius: 6px;
+  transition: 0.5s;
+  line-height: 3;
+  margin: 10px;
+  color: #fff;
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+  border: 2px solid #e96b56;
+  background: #e96b56;
+}
 
  .abc {
   font-weight: 300;
@@ -1965,5 +1981,140 @@ text-align:center ;
   -webkit-animation-delay: 0.8s;
   animation-delay: 0.8s;
   border: 2px solid #e96b55;
-  background: #e96b55;
+  background: #e96b56;
 }
+
+.ani_button {
+  display: flex;
+  justify-content: center;
+}
+label {
+  cursor: pointer;
+  font-size: 1em;
+}
+
+/* 못생긴 기존 input 숨기기
+#chooseFile {
+  visibility: hidden;
+} */
+
+.filebox .upload-name {
+  display: inline-block;
+  height: 40px;
+  padding: 0 5px;
+  vertical-align: middle;
+  border: 1px solid #dddddd;
+  width: 40%;
+  color: #dddddd;
+}
+
+.filebox label {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  vertical-align: middle;
+  background-color: #dddddd;
+  cursor: pointer;
+  height: 40px;
+  margin-left: 10px;
+}
+
+.filebox input[type="file"] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+}
+
+#root {
+  width: 100%;
+  margin: -5px auto;
+  max-width: 800px;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+}
+
+.contents {
+  display: flex;
+  /* flex-direction: row; */
+  margin-top: 30px;
+  align-items: center;
+  justify-content: center;
+  
+}
+.contents .upload-box {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contents .upload-box .drag-file {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px dashed #dbdbdb;
+}
+.contents .upload-box .drag-file.highlight {
+  border: 3px dashed red;
+}
+.contents .upload-box .drag-file .image {
+  width: 40px;
+}
+.contents .upload-box .drag-file .message {
+  margin-bottom: 0;
+}
+.contents .upload-box .drag-file .preview {
+  display: none;
+  position: absolute;
+  left: 0;
+  height: 0;
+  width: 100%;
+  height: 100%;
+}
+.contents .upload-box .file-label {
+  margin-top: 20px;
+  background-color: #545454;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  width: 50%;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.contents .upload-box .file {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .contents {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+  }
+  .contents .upload-box {
+    width: 100%;
+    box-sizing: border-box;
+    margin-right: 0;
+  }
+  .contents .upload-box .drag-file {
+    height: 150px;
+  }
+  .contents .files {
+    width: 100%;
+    box-sizing: border-box;
+    margin-right: 0;
+    overflow: initial;
+  }
+}
+
