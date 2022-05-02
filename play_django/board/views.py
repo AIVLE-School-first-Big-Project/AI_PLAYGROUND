@@ -61,7 +61,7 @@ def update(request, id):
             board.user_id = User.objects.get(user_id = user_id)
             board.date = timezone.now()
             board.title = form.cleaned_data['title']
-            # board.model_name = form.cleaned_data['model_name']
+            board.model_name = form.cleaned_data['model_name']
             board.body = form.cleaned_data['body']
             board.file = form.cleaned_data['file']
 
