@@ -2,45 +2,54 @@
 {% load static %}
 {% block content %}
 
-    <script src="{% static 'assets/js/jwt-decode.js' %}"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-        // jwt 토큰의 사용자 정보를 가져오는 참고용 코드
-        access_token = "{{ access_token }}"
+<script src="{% static 'member/jwt-decode.js' %}"></script>
+<script>
+  access_token = "{{ access_token }}"
 
-        decoded = jwt_decode(access_token)
-        user_id = decoded.user_id
+  if (access_token === 'logout') {
+    localStorage.clear()
+    window.location.href =  "http://127.0.0.1:8000/"
+  }
 
-        localStorage.setItem('access_token', access_token)
-        localStorage.setItem('user_id', user_id)
+  decoded = jwt_decode(access_token)
+  user_id = decoded.user_id
 
-        console.log('console test: ')
-        console.log(localStorage.getItem('access_token'))
-        console.log(localStorage.getItem('user_id'))
+  localStorage.setItem('access_token', access_token)
+  localStorage.setItem('user_id', user_id)
 
-        // logout
-        // localStorage.clear()
-    </script>
+  if (access_token) {
+    window.location.href =  "http://127.0.0.1:8000/"
+  }
+</script>
 
-    <div>
+<br>
+<br>
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class='col-lg-3 col-md-6'>
         <form action="{% url 'member:login' %}" method="post" role="form">
           {% csrf_token %}
-          <div>
-            <div>
-              <input type="text" name="user_id" id="name" placeholder="UserID" required>
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-12 form-group">
+              <input type="text" name="user_id" class="form-control" id="name" placeholder="UserID" required="">
             </div>
-            <div>
-              <input type="password" name="password" id="email" placeholder="Password" required>
+            <div class="w-100"></div>
+            <div class="col-md-12 form-group mt-3 mt-md-0">
+              <input type="password" class="form-control" name="password" id="password" placeholder="Password"
+                required="">
             </div>
-          <div>
-          <div>
-            <textarea name="profile_text" rows="5" placeholder="I want to login" required></textarea>
           </div>
-
-          <div>
+          <div class="text-center">
+            <a href="{% url 'member:signup' %}">
+              Signup
+            </a>
             <button type="submit">Login</button>
           </div>
         </form>
+      </div>
     </div>
+  </div>
+</section>
 
 {% endblock %}

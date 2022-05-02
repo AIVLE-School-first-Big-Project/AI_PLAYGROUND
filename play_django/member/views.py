@@ -87,8 +87,8 @@ def logout(request):
     except User.DoesNotExist as e:
         print(e)
 
-    template = loader.get_template('index.html')
-    response = HttpResponse(template.render(request=request))
+    template = loader.get_template('member/login.html')
+    response = HttpResponse(template.render({'access_token': 'logout'}, request))  
+    response.delete_cookie(key='refresh_token')  
 
-    response.delete_cookie(key='refresh_token')
     return response

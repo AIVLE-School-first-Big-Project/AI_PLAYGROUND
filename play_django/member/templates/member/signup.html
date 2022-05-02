@@ -1,26 +1,40 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-    <div>
-        <form action="{% url 'member:signup' %}" method="post" role="form">
+<br>
+<br>
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class='col-lg-3 col-md-6'>
+        <form action="{% url 'member:signup' %}" method="post" role="form" class="php-email-form">
           {% csrf_token %}
-          <div>
-            <div>
-              <input type="text" name="user_id" id="name" placeholder="UserID" required>
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-12 form-group">
+              <input type="text" name="user_id" class="form-control" id="name" placeholder="UserID" required="">
             </div>
-            <div>
-              <input type="password" name="password" id="email" placeholder="Password" required>
+            <div class="w-100"></div>
+            <div class="col-md-12 form-group mt-3 mt-md-0">
+              <input type="password" class="form-control" name="password" id="password" placeholder="Password"
+                required="">
             </div>
-          <div>
-          <div>
-            <textarea name="profile_text" rows="5" placeholder="Profile_text" required></textarea>
+            <div class="w-100"></div>
+            <div class="form-group mt-3">
+              <textarea class="form-control" name="profile_text" rows="5" placeholder="Profile_text" required></textarea>
+            </div>
           </div>
-
-          <div>
+          <div class="my-3">
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Signup Success</div>
+          </div>
+          <div class="text-center">
             <button type="submit">Signup</button>
           </div>
         </form>
+      </div>
     </div>
+  </div>
+</section>
 
 {% endblock %}
