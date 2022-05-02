@@ -8,10 +8,11 @@
     #update {
         font-family: 'S-CoreDream-4Regular';
     }
+
 </style>
 
 <div class="jumbotron">
-    <div class="container" id="update" style="background-color:#ABE0A1; color:white; border-radius:10px; padding-bottom:60px; margin-top:30px;">
+    <div class="container" id="update">
         <form method="post" action="{% url 'board:update' id=board.id %}" enctype="multipart/form-data">
       
             {% csrf_token %}
@@ -27,7 +28,8 @@
                 </div>
             {% endif %}
 
-            <div id="model_name" class="col-md-3">
+            <div class="form-group">
+                <label for="body" style="font-size:150%; margin: 10px;">모델명:</label>
                 <select name="model_name" class="form-select" selected="model_name">
                     <option value="{{ model_name }}">모델 이름 입력</option>
                     <<option value="pcolor">pcolor</option>
