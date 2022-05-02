@@ -49,41 +49,37 @@ def delete(request, id):
 
 # # 세션 추가
 def update(request, id):
-    ''
-#     context={}
-#     review = Review.objects.get(id=id)
+    context={}
+    board = Board.objects.get(id=id)
     
-#     context = {}
-#     if if_session(request):
-#         context['user_session_id'], context['user_session_veg_type'] = if_session(request)
+    context = {}
 
+    if request.method == 'POST':
+        if if_logined(request) is None:
+            return render(request, 'board/update_fail.html')
 
-#     if request.method == 'POST':
-#         if not request.session.get('user_id'):
-#             return render(request, 'reviews/update_fail.html')
+        form = BoardForm(request.POST, request.FILES)
+        user_id = if_logined(request)
 
-#         form = ReviewForm(request.POST, request.FILES)
-#         user_id = request.session['user_id']
+        if form.is_valid():
+            board.user_id = User.objects.get(user_id = user_id)
+            board.date = timezone.now()
+            board.title = form.cleaned_data['title']
+            # board.model_name = form.cleaned_data['model_name']
+            board.body = form.cleaned_data['body']
+            board.file = form.cleaned_data['file']
 
-#         if form.is_valid():
-#             review.member_id = User.objects.get(user_id = user_id)
-#             review.date = timezone.now()
-#             review.store_name = form.cleaned_data['store_name']
-#             review.title = form.cleaned_data['title']
-#             review.body = form.cleaned_data['body']
-#             review.file = form.cleaned_data['file']
-
-#             review.save()
-#             return render(request, 'reviews/update_success.html', context)
+            board.save()
+            return render(request, 'board/update_success.html', context)
     
-#     else:
-#         form = ReviewForm()
+    else:
+        form = BoardForm()
     
     
-#     context['form'] = form
-#     context['review'] = review
+    context['form'] = form
+    context['board'] = board
     
-#     return render(request, 'reviews/update.html', context)
+    return render(request, 'board/update.html', context)
 
 
 
@@ -144,7 +140,6 @@ def list(request):
 
 
 def details(request):
-    ''
     id = int(request.GET.get('id'))
     board = Board.objects.get(id=id)
 
@@ -168,18 +163,16 @@ import os
 
 
 def download(request, id):
-    ''
-#     #id = request.GET.get('id')
-#     review = Review.objects.get(id=id)
+    board = Board.objects.get(id=id)
     
-#     filepath = str(settings.BASE_DIR) + ('/media/%s' % review.file.name)
-#     filename = os.path.basename(filepath)
+    filepath = str(settings.BASE_DIR) + ('/media/%s' % board.file.name)
+    filename = os.path.basename(filepath)
 
-#     with open(filepath, 'rb') as f:
-#         response = HttpResponse(f, content_type='application/octet-stream')
-#         response['Content-Disposition'] = 'attachment; filename=%s' % filename
+    with open(filepath, 'rb') as f:
+        response = HttpResponse(f, content_type='application/octet-stream')
+        response['Content-Disposition'] = 'attachment; filename=%s' % filename
         
-#         return response
+        return response
 
 def if_logined(request):
     refresh_token = request.COOKIES.get('refresh_token')
@@ -191,9 +184,10 @@ def if_logined(request):
         return None
 
 def boardcreate(request):
-    # for i in range(200):
-    #         userid = User.objects.get(user_id='asdf')
-    #         Board.objects.create(user_id=userid, date='2020-12-12', model_name='pcolor',
-    #         title='1', body='1')
-        # return HttpResponse('데이터 입력 완료')
-   return HttpResponse(if_logined(request))
+    # 게시글 200개 만들기
+    for i in range(200):
+        userid = User.objects.get(id==0)
+        Board.objects.create(user_id=userid, date='2020-12-12', model_name='pcolor',
+        title='title_'+i, body='body_'+i)
+    return HttpResponse('데이터 입력 완료')
+    return HttpResponse(if_logined(request))

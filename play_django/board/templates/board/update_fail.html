@@ -1,12 +1,15 @@
-{% extends "user/base2.html"%}
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap4 %}
 {% block content %}
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
 
 <div class="jumbotron">
   <div class="container text-center" style="margin-top:200px;">
     <h1>잘못된 요청입니다.</h1>
-    <button type = "button" class = "btn btn-outline-light text-success" onclick = "location.href='/reviews/list'"
+    <button type = "button" class = "btn btn-outline-light text-success" onclick = "location.href='/board/list'"
       style="margin-top:30px; padding-right:100px; padding-left:100px; font-weight:bold">
-      리뷰 목록으로
+      게시판으로
     </button>
   </div>
 </div>
