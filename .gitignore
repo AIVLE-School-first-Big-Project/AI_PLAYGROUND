@@ -262,6 +262,9 @@ cython_debug/
 
 # Support for Project snippet scope
 
+# Mac thumbnail file
+.DS_Store
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
