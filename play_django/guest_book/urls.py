@@ -8,7 +8,7 @@ app_name = 'guest_book'
 
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.index, name='guest'),
 
 
 ]+ static(

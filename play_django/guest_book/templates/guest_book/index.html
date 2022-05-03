@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-<div class="row">
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet"/>
+<section>
+</section>
+<div class="img_box" style='padding:40px'>
   <div class='d-flex justify-content-center'>
 
     <form method="POST">
@@ -29,12 +31,16 @@
       
     </form>
   </div>
-</div>
+
 
 <style>
-  .box {
-    height:800px;
-    overflow:hidden;
+.imgbox {
+  padding-top: 10rem;
+  text-align: center;
+}
+.box {
+  height:800px;
+  overflow:hidden;
 }
 .box:hover {
     overflow-y:auto;
@@ -54,6 +60,9 @@
   box-shadow: inset 0px 0px 5px white;
 }
 </style>
+
+<section>
+</section>
   <div class="row mt-5 gx-3">
 
     <div class="col">
@@ -64,6 +73,8 @@
           <p class="card-text"><h3><strong><i data-feather="github" class="text-primary"style="width:30px;height:30px;"></i> 수도권</strong></h3></p>
         </div>
       </div>
+      <br>
+      <br>
         <div class="box">
         {% for content in guestbook%}
           {% if content.region == "수도권"%}
@@ -84,6 +95,8 @@
           <p class="card-text"><h3><strong><i data-feather="twitter" class="text-secondary"style="width:30px;height:30px;"></i> 경상권</strong></h3></p>
         </div>
       </div>
+      <br>
+      <br>
       <div class="box">
       {% for content in guestbook%}
           {% if content.region == "경상권"%}
@@ -103,6 +116,8 @@
           <p class="card-text"><h3><strong><i data-feather="twitch" class="text-success"style="width:30px;height:30px;"></i> 전라권</strong></h3></p>
         </div>
       </div>
+      <br>
+      <br>
       <div class="box">
       {% for content in guestbook%}
           {% if content.region == "전라권"%}
@@ -121,6 +136,8 @@
           <p class="card-text"><h3><strong><i data-feather="thumbs-up" class="text-warning"style="width:30px;height:30px;"></i> 강원권</strong></h3></p>
         </div>
       </div>
+      <br>
+      <br>
       <div class="box">
       {% for content in guestbook%}
           {% if content.region == "강원권"%}
@@ -139,6 +156,8 @@
           <p class="card-text"><h3><strong><i data-feather="gitlab" class="text-info"style="width:30px;height:30px;"></i> 충청권</strong></h3></p>
         </div>
       </div>
+      <br>
+      <br>
       <div class="box">
       {% for content in guestbook%}
           {% if content.region == "충청권"%}
@@ -150,7 +169,17 @@
     </div>
   </div>
 
-    
+  <section>
+  </section>
+  <section>
+  </section>
+  <section>
+  </section><section>
+  </section>
   </div>
-
+</div>
+<div imgbox>
+<section>
+</section>
+</div>
 {% endblock %}
