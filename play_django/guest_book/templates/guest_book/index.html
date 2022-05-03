@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+  <div class='d-flex justify-content-center'>
+
+    <form method="POST">
+      {% csrf_token %}
+      <div class="input-group">
+        
+        <div>
+          <select class="form-select" name="region" id="region-select">
+            <option value="">지역</option>
+            <option value="수도권">수도권</option>
+            <option value="경상권">경상권</option>
+            <option value="전라권">전라권</option>
+            <option value="강원권">강원권</option>
+            <option value="충청권">충청권</option>
+          </select>
+        </div>  
+        <div>
+          <input type="text" class="form-control" name="content">
+        </div>
+        <div>
+          <input class="btn btn-primary" type="submit" value="작성">
+        </div>
+    </div>
+      
+    </form>
+  </div>
+</div>
+
+<style>
+  .box {
+    height:800px;
+    overflow:hidden;
+}
+.box:hover {
+    overflow-y:auto;
+}
+.box::-webkit-scrollbar {
+  width: 1px;
+}
+.box::-webkit-scrollbar-thumb {
+  background-color: #2f3542;
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+.box::-webkit-scrollbar-track {
+  background-color: none;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px white;
+}
+</style>
+  <div class="row mt-5 gx-3">
+
+    <div class="col">
+      
+      
+      <div class="card text-center"style="border-radius: 2em">
+        <div class="card-body">
+          <p class="card-text"><h3><strong><i data-feather="github" class="text-primary"style="width:30px;height:30px;"></i> 수도권</strong></h3></p>
+        </div>
+      </div>
+        <div class="box">
+        {% for content in guestbook%}
+          {% if content.region == "수도권"%}
+            <div class="alert alert-primary" role="alert">
+              <i data-feather="github" class="text-primary"></i> {{content.content}}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    
+
+     
+    <div class="col">
+      
+      <div class="card text-center"style="border-radius: 2em">
+        <div class="card-body">
+          <p class="card-text"><h3><strong><i data-feather="twitter" class="text-secondary"style="width:30px;height:30px;"></i> 경상권</strong></h3></p>
+        </div>
+      </div>
+      <div class="box">
+      {% for content in guestbook%}
+          {% if content.region == "경상권"%}
+        <div class="alert alert-secondary" role="alert">
+          <i data-feather="twitter" class="text-secondary"></i> {{content.content}}
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  
+
+    <div class="col">
+      
+      <div class="card text-center"style="border-radius: 2em">
+        <div class="card-body">
+          <p class="card-text"><h3><strong><i data-feather="twitch" class="text-success"style="width:30px;height:30px;"></i> 전라권</strong></h3></p>
+        </div>
+      </div>
+      <div class="box">
+      {% for content in guestbook%}
+          {% if content.region == "전라권"%}
+        <div class="alert alert-success" role="alert">
+          <i data-feather="twitch" class="text-success"></i> {{content.content}}
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+    <div class="col">
+      
+      <div class="card text-center"style="border-radius: 2em">
+        <div class="card-body">
+          <p class="card-text"><h3><strong><i data-feather="thumbs-up" class="text-warning"style="width:30px;height:30px;"></i> 강원권</strong></h3></p>
+        </div>
+      </div>
+      <div class="box">
+      {% for content in guestbook%}
+          {% if content.region == "강원권"%}
+        <div class="alert alert-warning" role="alert">
+          <i data-feather="thumbs-up" class="text-warning"></i> {{content.content}}
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+    <div class="col">
+      
+      <div class="card text-center"style="border-radius: 2em">
+        <div class="card-body">
+          <p class="card-text"><h3><strong><i data-feather="gitlab" class="text-info"style="width:30px;height:30px;"></i> 충청권</strong></h3></p>
+        </div>
+      </div>
+      <div class="box">
+      {% for content in guestbook%}
+          {% if content.region == "충청권"%}
+        <div class="alert alert-info" role="alert">
+          <i data-feather="gitlab" class="text-info"></i> {{content.content}}
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+    
+  </div>
+
+{% endblock %}

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'pcolor',
     'member',
     'board',
+    'guest_book',
     # 'storages',
     # 'rest_framework',
 
