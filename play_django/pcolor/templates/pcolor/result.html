@@ -60,7 +60,7 @@
   margin-right: auto;
   padding-top: 10px;
   padding-bottom: 10px;
-  border-radius: 8%;
+  border-radius: 10px;
   margin-top: 40px;
 
 }
@@ -118,7 +118,10 @@ button.swal-button.swal-button--confirm:focus{
   
 }
 
+.btn{
 
+padding: 0px;
+}
 </style>
 
 
@@ -168,7 +171,7 @@ button.swal-button.swal-button--confirm:focus{
   <li class="retest">
   <a href="http://127.0.0.1:8000/pcolor/">
 
-    <img src="{%static 'pcolor/imgs/wundo.png' %}" width="50px" height="58px" />
+    <img src="{%static 'pcolor/imgs/icons8-return-64.png' %}" width="50px" height="58px" />
   </a>  
 </li>
 
@@ -176,9 +179,19 @@ button.swal-button.swal-button--confirm:focus{
   <div id="form">
     <form action="{% url 'pcolor:download' %}" method="GET"  id="form">
       <input type="hidden" name="pcolor" value="{{pcolor}}" >
-      <button class="btn" type="submit" value="Submit" id="submit"> <i class="far fa-bookmark fa-3x"></i></button>
+      <button class="btn" type="submit" value="Submit" id="submit">  <img src="{%static 'pcolor/imgs/icons8-dw-64.png' %}" width="50px" height="58px" /></button>
   </form> 
 </li>
+
+<li class="write">
+  <a href="{% url 'board:list' %}">
+
+    <img src="{%static 'pcolor/imgs/icons8-pen-60.png' %}" width="50px" height="58px" />
+  </a>  
+</li>
+
+
+
   </ul>
 
 
@@ -250,7 +263,7 @@ var result="{{pcolor}}";
       content: {
         title: '퍼스널 컬러 진단',
         description: '나에게 착붙는 베스트 컬러는 뭘까?🤷',
-        imageUrl: 'https://ifh.cc/g/vrLh29.jpg',
+        imageUrl: 'https://ifh.cc/g/J8vaDA.jpg',
         link: {
           mobileWebUrl: 'http://127.0.0.1:8000/pcolor/',
           webUrl: 'http://127.0.0.1:8000/pcolor/',
