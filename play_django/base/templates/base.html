@@ -82,7 +82,7 @@
             </ul>
           </li>
           <li><a href="/board/list">게시판</a></li>
-          <li><a href="/guest_book">방명록</a></li>
+          <li><a href="{% url 'guest_book:guest' %}">방명록</a></li>
           {% if request.COOKIES.refresh_token %}
             <li><a href="{% url 'member:logout' %}">{{ request.COOKIES.refresh_token | decode }}</a></li>
           {% else %}
