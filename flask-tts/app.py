@@ -51,14 +51,14 @@ def inference2(text, idx):
     # sf.write(os.path.join(save_dir, '{}.wav'.format(idx)), wav, sample_rate)
     return [sample_rate] + list(wav)
 
-@app.route('/predict/', methods=['POST'])
+@app.route('/predict', methods=['POST'])
 def predict():
 
     parser = reqparse.RequestParser()
-    parser.add_argument('sentences', action='append')
+    parser.add_argument('chatbot_answer', action='append')
 
     args = parser.parse_args()
-    sentences = args['sentences']
+    sentences = args['chatbot_answer']
     for i, text in enumerate(sentences):
         jamo = ''.join(list(hangul_to_jamo(text.replace('.', '').replace('!', '').replace('?', '').replace(',', ''))))
         inference1(jamo, i)

@@ -6,32 +6,24 @@ import os
 import requests
 import json
 import re
+import shutil
+import time
+import datetime
 
 face_detector = dlib.get_frontal_face_detector()
 lower = np.array([0,133,77], dtype = np.uint8)
 upper = np.array([255,173,127], dtype = np.uint8)
-
-
-
 def detect_face_masking(image_path):
-    if re.compile('[^ㄱ-ㅣ가-힣]+').sub('', image_path):
-        stream = open(f'./{image_path}', "rb")
-        bytes = bytearray(stream.read())
-        numpyarray = np.asarray(bytes, dtype=np.uint8)
-        img = cv2.imdecode(numpyarray,cv2.IMREAD_UNCHANGED)
-    else:
-        img = cv2.imread(f'./{image_path}')
-
-    # img = cv2.imread(f'./{image_path}')
+    img = cv2.imread(f'static/{image_path}')
     faces=[]
     try:
         faces = face_detector(img)
         print(faces)
     except:
-        # os.remove(f'./{image_path}')
+        os.remove(f'static/{image_path}')
         image_path='fail'
     if len(faces) != 1 :
-        # os.remove(f'./{image_path}')
+        os.remove(f'static/{image_path}')
         image_path='fail'
     else :
         f = faces[0]
@@ -43,11 +35,11 @@ def detect_face_masking(image_path):
         ratio_black = cv2.countNonZero(skin_msk)/(cropped_img.size/3)
         colorPercent = (ratio_black * 100) / scalePercent
         if colorPercent<=240:
-            # os.remove(f'./{image_path}')
+            os.remove(f'static/{image_path}')
             image_path='fail'
 
         else:
-            cv2.imwrite(f'./{image_path}',skin)
+            cv2.imwrite(f'static/{image_path}',skin)
 
     return image_path
 

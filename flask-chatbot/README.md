@@ -1,5 +1,4 @@
 ```
-conda install -c huggingface transformers
 pip install -r requirements.txt
+python chatbot_api.py
 ```
-
