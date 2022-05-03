@@ -130,15 +130,17 @@
       </ul>
     </div>
   </body>
-  {% if is_user %}
-{% endif %}
 </div>
 </form>
-<div id="list" style='text-align:center;'>
-  <form action="{% url 'board:write' %}" >
-    <button class='btn-get-started'>글쓰기</button>
-  </form>
-</div>
+
+{% if is_user %}
+  <div id="list" style='text-align:center;'>
+    <form action="{% url 'board:write' %}" >
+      <button class='btn-get-started'>글쓰기</button>
+    </form>
+  </div>
+{% endif %}
+
 <br>
 <br>
 <br>
