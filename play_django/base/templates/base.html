@@ -27,7 +27,7 @@
   <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="{% static 'assets/css/style2.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Eterna - v4.7.0
@@ -82,7 +82,7 @@
             </ul>
           </li>
           <li><a href="/board/list">게시판</a></li>
-          <li><a href="pricing.html">방명록</a></li>
+          <li><a href="/guest_book">방명록</a></li>
           {% if request.COOKIES.refresh_token %}
             <li><a href="{% url 'member:logout' %}">{{ request.COOKIES.refresh_token | decode }}</a></li>
           {% else %}
