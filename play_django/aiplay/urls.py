@@ -27,5 +27,6 @@ urlpatterns = [
     path('pcolor/', include('pcolor.urls')),
     path('member/', include('member.urls')),
     path('board/', include('board.urls')),  
+    path('guest_book/', include('guest_book.urls')),  
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

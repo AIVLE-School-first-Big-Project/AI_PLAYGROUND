@@ -115,13 +115,13 @@ button.swal-button.swal-button--confirm:focus{
 #submit:focus, #submit:focus,#submit:hover{
     outline: none !important;
     box-shadow: none;
-
   
 }
 
 
-
 </style>
+
+
 <div class="container">
   <div class="containerbox">
     <div class="imgbox">
@@ -187,6 +187,7 @@ button.swal-button.swal-button--confirm:focus{
          
     </div>
     </div>
+</body>
 
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -195,12 +196,13 @@ button.swal-button.swal-button--confirm:focus{
 
 
 <script type="text/javascript">
-history.pushState(null, null, "http://127.0.0.1:8000/pcolor/");
-window.onpopstate = function(event) {
-history.go(1);
-swal('뒤로가기 버튼을 눌러주세요' );
 
+history.pushState(null, null,' http://127.0.0.1:8000/pcolor/');
+    window.onpopstate = function () {
+        history.go(1);
 };
+
+
 
 
 var result="{{pcolor}}";

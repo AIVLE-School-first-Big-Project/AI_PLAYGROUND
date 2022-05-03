@@ -186,7 +186,7 @@ def if_logined(request):
 
 def boardcreate(request):
     # 게시글 200개 만들기
-    model_list = ['퍼스널컬러', '애니메이션화', '블리츠와전화데이트']
+    model_list = ['퍼스널컬러', '애니메이션화', 'AI와 통화하기']
     for i in range(200):
         userid = User.objects.get(id=1)
         Board.objects.create(user_id=userid, date=timezone.now(), model_name=model_list[i%3],

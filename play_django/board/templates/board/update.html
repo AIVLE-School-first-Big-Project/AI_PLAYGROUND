@@ -17,7 +17,7 @@
       
             {% csrf_token %}
             <div class="form-group">
-            <label for="title" style="font-size:150%; margin: 10px;">제목:</label>
+            <label for="title" style="font-size:150%; margin: 10px;">제목</label>
             <input type="text" class="form-control" name="title" 
                 id="title" value="{{ board.title }}" placeholder="제목을 입력하세요">
             </div>
@@ -29,18 +29,18 @@
             {% endif %}
 
             <div class="form-group">
-                <label for="body" style="font-size:150%; margin: 10px;">모델명:</label>
+                <label for="body" style="font-size:150%; margin: 10px;">모델명</label>
                 <select name="model_name" class="form-select" selected="model_name">
                     <option value="{{ board.model_name }}">현재: {{board.model_name}}</option>
                     <option value="퍼스널컬러">퍼스널컬러</option>
                     <option value="애니메이션화">애니메이션화</option>
-                    <option value="블리츠와전화데이트">블리츠와전화데이트</option>
+                    <option value="AI와 통화하기">AI와 통화하기</option>
                     <option value="기타">기타</option>
                 </select>
             </div>
 
             <div class="form-group">
-            <label for="body" style="font-size:150%; margin: 10px;">내용:</label>
+            <label for="body" style="font-size:150%; margin: 10px;">내용</label>
             <textarea class="form-control" rows="10" name="body" 
                 id="body" placeholder="내용을 입력하세요">{{ board.body }}</textarea>
             </div>
@@ -60,11 +60,11 @@
             </div>
 
             <div style="float: right;">
-                <button type="button" class="btn btn-success" style="padding:10px 50px; margin-left:20px;"
+                <button type="button" class="btn-get-started" style="padding:10px 50px; margin-left:20px;"
                     onclick="document.location.href='/board/details/?id={{ board.id }}'">취소</button>
             </div>
             <div style="float:right;">
-                <input type="submit" value="등록" class='btn btn-success' style="padding:10px 50px;">
+                <input type="submit" value="등록" class='btn-get-started' style="padding:10px 50px;">
             </div>
         </form>
     </div>

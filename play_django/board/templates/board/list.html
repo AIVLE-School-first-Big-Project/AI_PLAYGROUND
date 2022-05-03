@@ -24,7 +24,7 @@
   }
 </style>
 
-<div class="container" id="list" style="margin-bottom: 10px; margin-top:10px">
+<div class="container" id="list" style="margin-bottom: 10px; margin-top:50px">
   <form method="GET" action="{% url 'board:list' %}" class="row g-2 justify-content-center">
 
  
@@ -54,7 +54,7 @@
               <option value="전체">전체</option>
               <option value="퍼스널컬러">퍼스널컬러</option>
               <option value="애니메이션화">애니메이션화</option>
-              <option value="블리츠와전화데이트">블리츠와전화데이트</option>
+              <option value="AI와 통화하기">AI와 통화하기</option>
               <option value="기타">기타</option>
           </select>
       </div>
@@ -130,15 +130,22 @@
       </ul>
     </div>
   </body>
-  {% if is_user %}
+</div>
+</form>
+
+{% if is_user %}
   <div id="list" style='text-align:center;'>
     <form action="{% url 'board:write' %}" >
-      <button>글쓰기</button>
+      <button class='btn-get-started'>글쓰기</button>
     </form>
   </div>
 {% endif %}
-</form>
-</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 <script> 

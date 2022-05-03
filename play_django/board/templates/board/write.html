@@ -11,7 +11,8 @@
 </style>
 
 <div class="jumbotron">
-    <div class="container" id="container1" style="background-color:#ABE0A1; color:white; border-radius:10px; padding-bottom:60px; margin-top:30px;">
+    <div class="container" id="write">
+        {% comment %} style="background-color:#ABE0A1; color:white; border-radius:10px; padding-bottom:60px; margin-top:30px;" {% endcomment %}
         <form method="post" action="{% url 'board:write' %}" enctype="multipart/form-data">
             
             {% csrf_token %}
@@ -31,7 +32,7 @@
                     <option value='' disabled selected>모델 이름 입력</option>
                     <<option value="퍼스널컬러">퍼스널컬러</option>
                     <option value="애니메이션화">애니메이션화</option>
-                    <option value="블리츠와전화데이트">블리츠와전화데이트</option>
+                    <option value="AI와 통화하기">AI와 통화하기</option>
                     <option value="기타">기타</option>
                 </select>
             </div> 
@@ -53,11 +54,11 @@
             </div>
 
             <div style="float: right;">
-            <button type="button" class="btn btn-success" style="padding:10px 50px; margin-left:20px;"
+            <button type="button" class="btn-get-started" style="padding:10px 50px; margin-left:20px;"
                 onclick="document.location.href='{% url 'board:list' %}'">취소</button>
             </div>
             <div style="float:right;">
-                <input type="submit" value="등록" class='btn btn-success' style="padding:10px 50px;">
+                <input type="submit" value="등록" class='btn-get-started' style="padding:10px 50px;">
             </div>
         </form>
     </div>

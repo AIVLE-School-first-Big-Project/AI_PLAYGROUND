@@ -81,8 +81,8 @@
               <li><a href="{% url 'voicebot:index' %}">AI와 통화하기</a></li>
             </ul>
           </li>
-          <li><a href="/board/list">게시판</a></li>
-          <li><a href="pricing.html">방명록</a></li>
+          <li><a href="{% url 'board:list' %}">게시판</a></li>
+          <li><a href="{% url 'guest_book:guest' %}">방명록</a></li>
           {% if request.COOKIES.refresh_token %}
             <li><a href="{% url 'member:logout' %}">{{ request.COOKIES.refresh_token | decode }}</a></li>
           {% else %}

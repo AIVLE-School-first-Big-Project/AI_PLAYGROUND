@@ -28,11 +28,11 @@
         </tr>
     </table>
 
-    <label for="title" style="font-size:150%; font-family: 'S-CoreDream-5Medium';">제목:</label>
+    <label for="title" style="font-size:150%; font-family: 'S-CoreDream-5Medium';">제목</label>
         <input type="text" class="form-control" name="title" 
             id="title" value="{{ board.title }}">
 
-    <label for="body" style="font-size:150%; margin-top: 10px; font-family: 'S-CoreDream-5Medium';">내용:</label>
+    <label for="body" style="font-size:150%; margin-top: 10px; font-family: 'S-CoreDream-5Medium';">내용</label>
         <textarea class="form-control" rows="10" name="body" 
             id="body"> {{ board.body }}
         </textarea>
@@ -44,7 +44,7 @@
         <br>
         <div style="float: left;">
             <form action="{% url 'board:download' id=id %}">
-                <button class="btn btn-success" style="margin-left:20px; padding:10px 50px;">다운로드</button>
+                <button class="btn-get-started" style="margin-left:20px; padding:10px 50px;">다운로드</button>
             </form>
         </div>
     {% endif %}
@@ -52,21 +52,27 @@
     {% if is_logined %}
         <div style="float: right;">
             <form action="{% url 'board:update' id=id %}">
-                <button class="btn btn-success" style="margin-left:20px; padding:10px 50px; font-family: 'S-CoreDream-4Regular';">수정</button>
+                <button class="btn-get-started" style="margin-left:20px; padding:10px 50px; font-family: 'S-CoreDream-4Regular';">수정</button>
             </form>
         </div>
         <div style="float: right;">
             <form action="{% url 'board:delete' id=id %}">
-                <button class="btn btn-success" style="padding:10px 50px; font-family: 'S-CoreDream-4Regular';">삭제</button>
+                <button class="btn-get-started" style="padding:10px 50px; font-family: 'S-CoreDream-4Regular';">삭제</button>
             </form>
         </div>
 
     {% endif %}
-
-
-
-
     </div>
 </body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 {% endblock %}
