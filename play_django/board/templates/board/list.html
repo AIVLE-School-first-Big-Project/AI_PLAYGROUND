@@ -131,13 +131,13 @@
     </div>
   </body>
   {% if is_user %}
-  <div id="list" style='text-align:center;'>
-    <form action="{% url 'board:write' %}" >
-      <button>글쓰기</button>
-    </form>
-  </div>
 {% endif %}
+</div>
 </form>
+<div id="list" style='text-align:center;'>
+  <form action="{% url 'board:write' %}" >
+    <button>글쓰기</button>
+  </form>
 </div>
 
 
