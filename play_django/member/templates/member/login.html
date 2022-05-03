@@ -22,33 +22,24 @@
   }
 </script>
 
-<br>
-<br>
-<section id="contact" class="contact">
-  <div class="container">
-    <div class="row d-flex justify-content-center">
-      <div class='col-lg-3 col-md-6'>
-        <form action="{% url 'member:login' %}" method="post" role="form">
-          {% csrf_token %}
-          <div class="row d-flex justify-content-center">
-            <div class="col-md-12 form-group">
-              <input type="text" name="user_id" class="form-control" id="name" placeholder="UserID" required="">
-            </div>
-            <div class="w-100"></div>
-            <div class="col-md-12 form-group mt-3 mt-md-0">
-              <input type="password" class="form-control" name="password" id="password" placeholder="Password"
-                required="">
-            </div>
-          </div>
-          <div class="text-center">
-            <a href="{% url 'member:signup' %}">
-              Signup
-            </a>
-            <button type="submit">Login</button>
-          </div>
-        </form>
+<link href="{% static 'member/styles.css' %}" type="text/css" rel="stylesheet"/>
+<section id="member-container">
+  <div id="member-box">
+    <form id="member-form" action="{% url 'member:login' %}" method="post" role="form">
+      {% csrf_token %}
+      <div class="member-form-div1">
+        <input class="member-form-elm1" id="name" type="text" name="user_id" placeholder="UserID" required>
       </div>
-    </div>
+      <div class="member-form-div1">
+        <input class="member-form-elm1" id="password" type="password" name="password" placeholder="Password" required>
+      </div>
+      <div class="member-form-div2">
+        <span class="member-form-elm2">
+          <a href="{% url 'member:signup' %}">Signup</a>
+        </span>
+        <button type="submit">Login</button>
+      </div>
+    </form>
   </div>
 </section>
 
