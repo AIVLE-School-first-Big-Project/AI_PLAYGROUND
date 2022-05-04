@@ -30,11 +30,11 @@
 
     <label for="title" style="font-size:150%; font-family: 'S-CoreDream-5Medium';">제목</label>
         <input type="text" class="form-control" name="title" 
-            id="title" value="{{ board.title }}">
+            id="title" value="{{ board.title }}" readonly>
 
     <label for="body" style="font-size:150%; margin-top: 10px; font-family: 'S-CoreDream-5Medium';">내용</label>
         <textarea class="form-control" rows="10" name="body" 
-            id="body"> {{ board.body }}
+            id="body" readonly> {{ board.body }}
         </textarea>
 
     <br>
