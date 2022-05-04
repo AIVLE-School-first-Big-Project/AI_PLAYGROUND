@@ -9,7 +9,7 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
-        self.room_group_name = 'voicebot_%s' % self.room_name
+        self.room_group_name = 'voicebot_%s' % self.room_name + datetime.datetime.today().strftime('%Y%m%d%H%M%S')
 
         # Join room group
         await self.channel_layer.group_add(
