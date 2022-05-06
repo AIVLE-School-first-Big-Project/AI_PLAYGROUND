@@ -21,21 +21,27 @@
 
 - requirements로 제공 예정.
 
-## flask 모듈화
+## 3 Tier Architecture
 
-- 
-
+![8.png](/play_django/README/8.png)
+![9-1.png](/play_django/README/9-1.png)
 
 ## UI/UX
 
 ![baseui.png](/play_django/README/baseui.png)
+
+## Tech
+<img src="https://img.shields.io/badge/Python-3766AB?style=flat-square&logo=Python&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/OpenCV-3766AB?style=flat-square&logo=OpenCV&logoColor=5C3EE8&color=red"/></a>
+<img src="https://img.shields.io/badge/Django-3766AB?style=flat-square&color=092E20"/></a>
+<img src="https://img.shields.io/badge/JavaScript-3766AB?style=flat-square&logo=JavaScript&logoColor=black&color=F7DF1E"/></a>
+<img src="https://img.shields.io/badge/Tensorflow-FF6F00?style=flat-square&logo=Tensorflow&logoColor=white"/></a>
+<img src="https://img.shields.io/badge/Pytorch-EE4C2C?style=flat-square&logo=Pytorch&logoColor=white"/>
 
 ## 플로우차트
 
 ## ERD
 
 ## 애플리케이션
-
-## Arictecture
 
 ## 마치며.
