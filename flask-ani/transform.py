@@ -1,4 +1,4 @@
-import tensorflow as tf # tensorflow 1.13.1+
+import tensorflow as tf
 import cv2
 import dlib
 import numpy as np
@@ -54,12 +54,7 @@ def selfie2anime(img_path):
         img_output = img_output.astype(np.uint8).squeeze()
         
         result = np.hstack([cv2.resize(img, (256, 256)), img_output])
-        
-        # plt.figure(figsize=(16, 8))
-        # plt.axis('off')
-        # plt.imshow(result)
 
-        #cv2.imwrite('result/%s' % os.path.basename(img_path), result[:, :, ::-1])
         cv2.imwrite('static/%s' % os.path.basename(img_path), result[:, :, ::-1])
 
     return result
