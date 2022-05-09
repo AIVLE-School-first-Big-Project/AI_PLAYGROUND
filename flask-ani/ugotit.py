@@ -6,95 +6,29 @@ from tensorflow.contrib.data import prefetch_to_device, shuffle_and_repeat, map_
 import numpy as np
 
 class UGATIT(object) :
-    def __init__(self, sess, args):
-        self.light = args.light
+    def __init__(self):
+        self.light = False
 
         if self.light :
             self.model_name = 'UGATIT_light'
         else :
             self.model_name = 'UGATIT'
 
-        self.sess = sess
-        self.phase = args.phase
-        self.checkpoint_dir = args.checkpoint_dir
-        self.result_dir = args.result_dir
-        self.log_dir = args.log_dir
-        self.dataset_name = args.dataset
-        self.augment_flag = args.augment_flag
+        self.phase = 'test'
 
-        self.epoch = args.epoch
-        self.iteration = args.iteration
-        self.decay_flag = args.decay_flag
-        self.decay_epoch = args.decay_epoch
-
-        self.gan_type = args.gan_type
-
-        self.batch_size = args.batch_size
-        self.print_freq = args.print_freq
-        self.save_freq = args.save_freq
-
-        self.init_lr = args.lr
-        self.ch = args.ch
+        self.batch_size = 1
+        self.ch = 64
 
         """ Weight """
-        self.adv_weight = args.adv_weight
-        self.cycle_weight = args.cycle_weight
-        self.identity_weight = args.identity_weight
-        self.cam_weight = args.cam_weight
-        self.ld = args.GP_ld
-        self.smoothing = args.smoothing
+        self.smoothing = True
 
         """ Generator """
-        self.n_res = args.n_res
+        self.n_res = 4
 
         """ Discriminator """
-        self.n_dis = args.n_dis
-        self.n_critic = args.n_critic
-        self.sn = args.sn
 
-        self.img_size = args.img_size
-        self.img_ch = args.img_ch
-
-
-        self.sample_dir = os.path.join(args.sample_dir, self.model_dir)
-        check_folder(self.sample_dir)
-
-        # self.trainA, self.trainB = prepare_data(dataset_name=self.dataset_name, size=self.img_size
-        self.trainA_dataset = glob('./dataset/{}/*.*'.format(self.dataset_name + '/trainA'))
-        self.trainB_dataset = glob('./dataset/{}/*.*'.format(self.dataset_name + '/trainB'))
-        self.dataset_num = max(len(self.trainA_dataset), len(self.trainB_dataset))
-
-        print()
-
-        print("##### Information #####")
-        print("# light : ", self.light)
-        print("# gan type : ", self.gan_type)
-        print("# dataset : ", self.dataset_name)
-        print("# max dataset number : ", self.dataset_num)
-        print("# batch_size : ", self.batch_size)
-        print("# epoch : ", self.epoch)
-        print("# iteration per epoch : ", self.iteration)
-        print("# smoothing : ", self.smoothing)
-
-        print()
-
-        print("##### Generator #####")
-        print("# residual blocks : ", self.n_res)
-
-        print()
-
-        print("##### Discriminator #####")
-        print("# discriminator layer : ", self.n_dis)
-        print("# the number of critic : ", self.n_critic)
-        print("# spectral normalization : ", self.sn)
-
-        print()
-
-        print("##### Weight #####")
-        print("# adv_weight : ", self.adv_weight)
-        print("# cycle_weight : ", self.cycle_weight)
-        print("# identity_weight : ", self.identity_weight)
-        print("# cam_weight : ", self.cam_weight)
+        self.img_size = 256
+        self.img_ch = 3
 
     ##################################################################################
     # Generator
@@ -515,9 +449,7 @@ class UGATIT(object) :
         past_g_loss = -1.
         lr = self.init_lr
         for epoch in range(start_epoch, self.epoch):
-            # lr = self.init_lr if epoch < self.decay_epoch else self.init_lr * (self.epoch - epoch) / (self.epoch - self.decay_epoch)
             if self.decay_flag :
-                #lr = self.init_lr * pow(0.5, epoch // self.decay_epoch)
                 lr = self.init_lr if epoch < self.decay_epoch else self.init_lr * (self.epoch - epoch) / (self.epoch - self.decay_epoch)
             for idx in range(start_batch_id, self.iteration):
                 train_feed_dict = {
@@ -548,11 +480,7 @@ class UGATIT(object) :
                 if np.mod(idx+1, self.print_freq) == 0 :
                     save_images(batch_A_images, [self.batch_size, 1],
                                 './{}/real_A_{:03d}_{:05d}.png'.format(self.sample_dir, epoch, idx+1))
-                    # save_images(batch_B_images, [self.batch_size, 1],
-                    #             './{}/real_B_{:03d}_{:05d}.png'.format(self.sample_dir, epoch, idx+1))
 
-                    # save_images(fake_A, [self.batch_size, 1],
-                    #             './{}/fake_A_{:03d}_{:05d}.png'.format(self.sample_dir, epoch, idx+1))
                     save_images(fake_B, [self.batch_size, 1],
                                 './{}/fake_B_{:03d}_{:05d}.png'.format(self.sample_dir, epoch, idx+1))
 
