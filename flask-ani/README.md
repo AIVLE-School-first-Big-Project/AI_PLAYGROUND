@@ -11,7 +11,7 @@
 ## 모델 불러오기
 
 - 가중치 모델의 용량이 약 7GB 이므로 github에 올려지지 않습니다.
-- 따라서 아래 링크로 들어간 후 ../flask-ani/checkpoint  ≤ 경로에 압축을 풀어서 넣어주세요.
+- 따라서 아래 파일을 다운 후 ../flask-ani/checkpoint  ≤ 경로를 만들고 이곳에 아래 파일을 넣어주세요
 - [https://drive.google.com/file/d/1fC4kbsQqZ-pBRLkU3MHfaA1H1AFJgma1/view?usp=sharing](https://drive.google.com/file/d/1fC4kbsQqZ-pBRLkU3MHfaA1H1AFJgma1/view?usp=sharing)
 
 ## API 호출법
