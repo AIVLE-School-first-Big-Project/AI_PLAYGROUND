@@ -22,3 +22,6 @@ toml==0.10.2
 tzdata==2022.1
 wincertstore==0.2
 wrapt==1.12.1
+requests==2.27.1
+argon2-cffi==21.3.0
+pyjwt==2.3.0
