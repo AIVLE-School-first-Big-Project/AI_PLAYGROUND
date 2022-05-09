@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 from glob import glob
-from ugotit import UGATIT
+from ugatit import UGATIT
 
 tf.logging.set_verbosity(tf.logging.ERROR)
 detector = dlib.get_frontal_face_detector()
