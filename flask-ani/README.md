@@ -11,7 +11,7 @@
 ## 모델 불러오기
 
 - 가중치 모델의 용량이 약 7GB 이므로 github에 올려지지 않습니다.
-- 따라서 아래 파일을 다운 후 ../flask-ani/checkpoint  ≤ 경로를 만들고 이곳에 아래 파일을 넣어주세요
+- 따라서 아래 파일을 다운 후 /checkpoint 경로를 만들고 이곳에 아래 파일을 넣어주세요
 - [https://drive.google.com/file/d/1fC4kbsQqZ-pBRLkU3MHfaA1H1AFJgma1/view?usp=sharing](https://drive.google.com/file/d/1fC4kbsQqZ-pBRLkU3MHfaA1H1AFJgma1/view?usp=sharing)
 
 ## API 호출법
@@ -25,4 +25,4 @@
 
 ## 모델 Architecture
 
-[https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FvXlZl%2FbtqYbIBtsmR%2FOtEJweMsF5kfVltONPDBJ0%2Fimg.png](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FvXlZl%2FbtqYbIBtsmR%2FOtEJweMsF5kfVltONPDBJ0%2Fimg.png)
+<img src = 'https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FvXlZl%2FbtqYbIBtsmR%2FOtEJweMsF5kfVltONPDBJ0%2Fimg.png' width=600 height=600 >
