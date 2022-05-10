@@ -25,8 +25,8 @@
 
 - conda create -n aiplay python=3.8
 - conda activate aiplay
-- pip install -r requirements.txt
 - cd play_django
+- pip install -r requirements.txt
 - python manage.py migrate
 - python manage.py runserver
 
