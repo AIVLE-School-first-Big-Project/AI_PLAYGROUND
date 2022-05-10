@@ -1,6 +1,5 @@
-# README
-
 # 🎪AI_PLAYGROUND🎪
+<img src="/play_django/README/sum.jpg" width=300 height=300>
 
 ## 🥇조원
 
