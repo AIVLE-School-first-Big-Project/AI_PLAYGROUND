@@ -1,6 +1,5 @@
-# README
-
 # 🎪AI_PLAYGROUND🎪
+<img src="/play_django/README/sum.jpg" width=500 height=500>
 
 ## 🥇조원
 
@@ -14,7 +13,7 @@
     - 사진으로 알아보는 **퍼스널컬러**
     - 내 사진을 애니메이션으로 변경해주는 **애니메이션화** 
     - AI와 나누는 소소한 대화 **AI VoiceBot**
-- 이는 사람들이 AI를 좀 더 재밌게 느끼고 가까워지는 계기가 되어 KT가 AI 강국으로 이끄는데 일조하기를 빕니다.
+- 이는 사람들이 AI를 좀 더 재밌게 느끼고 가까워지는 계기가 되어 저희의 직무가 사람들에게 조금 더 가까워지기를 바랍니다.
 
 ## 👨‍💻대상
 
@@ -26,8 +25,10 @@
 
 - conda create -n aiplay python=3.8
 - conda activate aiplay
+- cd play_django
 - pip install -r requirements.txt
-- python app.py
+- python manage.py migrate
+- python manage.py runserver
 
 ## 🔬3 Tier Architecture
 
@@ -38,6 +39,9 @@
 
 ![baseui.png](/play_django/README/baseui.png)
 
+## 👀자체평가표
+<img src="/play_django/README/val.png">
+
 ## ⚒️Tech
 <img src="https://img.shields.io/badge/Python-3766AB?style=flat-square&logo=Python&logoColor=white"/></a>
 <img src="https://img.shields.io/badge/OpenCV-3766AB?style=flat-square&logo=OpenCV&logoColor=5C3EE8&color=red"/></a>
@@ -45,11 +49,6 @@
 <img src="https://img.shields.io/badge/JavaScript-3766AB?style=flat-square&logo=JavaScript&logoColor=black&color=F7DF1E"/></a>
 <img src="https://img.shields.io/badge/Tensorflow-FF6F00?style=flat-square&logo=Tensorflow&logoColor=white"/></a>
 <img src="https://img.shields.io/badge/Pytorch-EE4C2C?style=flat-square&logo=Pytorch&logoColor=white"/>
-
-## 플로우차트
-
-## ERD
-
-## 애플리케이션
-
+<img src="https://img.shields.io/badge/Flask-3766AB?style=flat-square&logo=Flask&logoColor=white"/>
 ## 마치며.
+
