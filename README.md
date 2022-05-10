@@ -26,7 +26,9 @@
 - conda create -n aiplay python=3.8
 - conda activate aiplay
 - pip install -r requirements.txt
-- python app.py
+- cd play_django
+- python manage.py migrate
+- python manage.py runserver
 
 ## 🔬3 Tier Architecture
 
@@ -38,7 +40,7 @@
 ![baseui.png](/play_django/README/baseui.png)
 
 ## 👀자체평가표
-<img src="/play_django/README/val.png" width=1080 height=600>
+<img src="/play_django/README/val.png">
 
 ## ⚒️Tech
 <img src="https://img.shields.io/badge/Python-3766AB?style=flat-square&logo=Python&logoColor=white"/></a>
