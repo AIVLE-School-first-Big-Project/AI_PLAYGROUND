@@ -37,6 +37,9 @@
 
 ![baseui.png](/play_django/README/baseui.png)
 
+## 👀자체평가표
+<img src="/play_django/README/val.png" width=1080 height=600>
+
 ## ⚒️Tech
 <img src="https://img.shields.io/badge/Python-3766AB?style=flat-square&logo=Python&logoColor=white"/></a>
 <img src="https://img.shields.io/badge/OpenCV-3766AB?style=flat-square&logo=OpenCV&logoColor=5C3EE8&color=red"/></a>
