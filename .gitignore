@@ -292,7 +292,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # flask-tts
-*.wav
+flask-tts/output/
 
 # flask-ani
 flask-ani/checkpoint/
