@@ -31,7 +31,7 @@ def find_user(request):
             print(e)
             return HttpResponse('<h1>No matching information found</h1>')
 
-        return HttpResponse(f'<h1>Your UserID is {user.user_id}.</h1>') 
+        return HttpResponse(f'<h1 style="text-align: center; margin-top: 3%">Your UserID is {user.user_id}.</h1>') 
 
     else:
         return render(request, 'member/find_user.html')
