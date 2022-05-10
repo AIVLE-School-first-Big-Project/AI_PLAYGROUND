@@ -30,9 +30,7 @@ class UGATIT(object) :
         self.img_size = 256
         self.img_ch = 3
 
-    ##################################################################################
     # Generator
-    ##################################################################################
 
     def generator(self, x_init, reuse=False, scope="generator"):
         channel = self.ch
@@ -114,9 +112,7 @@ class UGATIT(object) :
 
             return gamma, beta
 
-    ##################################################################################
     # Discriminator
-    ##################################################################################
 
     def discriminator(self, x_init, reuse=False, scope="discriminator"):
         D_logit = []
@@ -205,9 +201,7 @@ class UGATIT(object) :
 
             return x, cam_logit, heatmap
 
-    ##################################################################################
     # Model
-    ##################################################################################
 
     def generate_a2b(self, x_A, reuse=False):
         out, cam, _ = self.generator(x_A, reuse=reuse, scope="generator_B")
@@ -487,10 +481,6 @@ class UGATIT(object) :
                 if np.mod(idx + 1, self.save_freq) == 0:
                     self.save(self.checkpoint_dir, counter)
 
-
-
-            # After an epoch, start_batch_id is set to zero
-            # non-zero value is only for the first epoch after loading pre-trained model
             start_batch_id = 0
 
             # save model for final step
