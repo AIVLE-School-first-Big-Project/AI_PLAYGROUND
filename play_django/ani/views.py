@@ -15,12 +15,6 @@ import cv2
 from ast import literal_eval
 # Create your views here.
 
-def first_view(request):
-    return render(request, 'ani/first_view.html')
-
-def write(request):
-    return render(request, 'ani/write.html')
-
 def fileUpload(request):
     if request.method == 'POST':
         img = request.FILES['imgfile']
@@ -37,12 +31,6 @@ def fileUpload(request):
 
         test=literal_eval(res.json())
         if test['try'] == 'success':
-            # img2 = cv2.imread(filename = test['resultfile'])
-            # img2.name = test['resultfile']
-            # fileupload2 = FileUpload(
-            # imgfile=img2,
-            # )
-            # img2.save()
             return render(request, 'ani/result.html', upload)
         else:
             return render(request, 'ani/noface.html')
