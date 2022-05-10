@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link href="{% static 'member/styles.css' %}" type="text/css" rel="stylesheet"/>
+<section id="member-container">
+    <div id="member-box">
+        <form id="member-form" action="{% url 'member:update_user' %}" method="post" role="form">
+        {% csrf_token %}
+        <div class="member-form-div1">
+            <input class="member-form-elm1" id="password" type="password" name="password" placeholder="New Password" required>
+        </div>
+        <div class="member-form-div2">
+            <span class="member-form-elm2">
+                <a href="{% url 'member:delete_user' %}">Delete All</a>
+            </span>
+            <button type="submit">Update</button>
+        </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

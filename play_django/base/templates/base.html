@@ -84,7 +84,13 @@
           <li><a href="{% url 'board:list' %}">게시판</a></li>
           <li><a href="{% url 'guest_book:guest' %}">방명록</a></li>
           {% if request.COOKIES.refresh_token %}
-            <li><a href="{% url 'member:logout' %}">{{ request.COOKIES.refresh_token | decode }}</a></li>
+            <li class="dropdown">
+              <a href="#"><span>{{ request.COOKIES.refresh_token | decode }}</span> <i class="bi bi-chevron-down"></i></a>
+              <ul>
+                <li><a href="{% url 'member:update_user' %}">회원정보수정</a></li>
+                <li><a href="{% url 'member:logout' %}">로그아웃</a></li>
+              </ul>
+            </li>
           {% else %}
             <li><a href="{% url 'member:login' %}">로그인</a></li>
           {% endif %}

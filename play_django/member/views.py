@@ -1,3 +1,4 @@
+import profile
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.template import loader
@@ -10,14 +11,73 @@ def signup(request):
     if request.method == 'POST':
         user_id = request.POST.get('user_id')
         password = request.POST.get('password')
-        profile_text = request.POST.get('profile_text')
+        email = request.POST.get('email')
 
-        user = User(user_id=user_id, password=PasswordHasher().hash(password), profile_text=profile_text)
+        user = User(user_id=user_id, password=PasswordHasher().hash(password), email=email)
         user.save()
 
         return redirect('/')
     else:
         return render(request, 'member/signup.html')
+
+
+def find_user(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist as e:
+            print(e)
+            return HttpResponse('<h1>No matching information found</h1>')
+
+        return HttpResponse(f'<h1>Your UserID is {user.user_id}.</h1>') 
+
+    else:
+        return render(request, 'member/find_user.html')
+
+
+def update_user(request):
+    refresh_token = request.COOKIES.get('refresh_token')
+
+    if refresh_token == None:
+        return redirect('/')
+
+    if request.method == 'POST':
+        password = request.POST.get('password')
+
+        try:
+            user = User.objects.get(current_rftoken=refresh_token)
+            user.password = PasswordHasher().hash(password)
+            user.save()
+
+        except User.DoesNotExist as e:
+            print(e)
+            HttpResponse('<h1>Invalid access</h1>')
+
+        return redirect('/')   
+    else:
+        return render(request, 'member/update_user.html')
+
+
+def delete_user(request):
+    refresh_token = request.COOKIES.get('refresh_token')
+
+    if refresh_token == None:
+        return HttpResponse('<h1>Invalid access</h1>')
+    
+    try:
+        user = User.objects.get(current_rftoken=refresh_token)
+        user.delete()
+
+    except User.DoesNotExist as e:
+        print(e)
+
+    template = loader.get_template('member/login.html')
+    response = HttpResponse(template.render({'access_token': 'logout'}, request))  
+    response.delete_cookie(key='refresh_token')  
+
+    return response
 
 
 def login(request):
@@ -44,13 +104,13 @@ def login(request):
 
         except User.DoesNotExist as e:
             print(e)
-            return HttpResponse('Login fail')
+            return HttpResponse('<h1>Login fail</h1>')
         except exceptions.VerifyMismatchError as e:
             print(e)
-            return HttpResponse('Password mismatched')
+            return HttpResponse('<h1>Password mismatched</h1>')
         except Exception as e:
             print(e)
-            return HttpResponse('...')
+            return HttpResponse('<h1>...</h1>')
     else:
         return render(request, 'member/login.html')
 
@@ -76,7 +136,7 @@ def logout(request):
     refresh_token = request.COOKIES.get('refresh_token')
 
     if refresh_token == None:
-        return HttpResponse('Invalid access')
+        return HttpResponse('<h1>Invalid access</h1>')
     
     try:
         user = User.objects.get(current_rftoken=refresh_token)

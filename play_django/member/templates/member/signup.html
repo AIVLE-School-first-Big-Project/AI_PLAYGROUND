@@ -8,15 +8,18 @@
     <form id="member-form" action="{% url 'member:signup' %}" method="post" role="form">
       {% csrf_token %}
       <div class="member-form-div1">
-        <input class="member-form-elm1" id="name" type="text" name="user_id" placeholder="UserID" required>
+        <input class="member-form-elm1" id="user_id" type="text" name="user_id" placeholder="UserID" required>
       </div>
       <div class="member-form-div1">
         <input class="member-form-elm1" id="password" type="password" name="password" placeholder="Password" required>
       </div>
       <div class="member-form-div1">
-        <textarea class="member-form-elm1" id="profile_text" name="profile_text" rows="5" maxlength="255" placeholder="Profile text"></textarea>
+        <input class="member-form-elm1" id="email" type="email" name="email" placeholder="Email" required>
       </div>
       <div class="member-form-div2">
+        <span class="member-form-elm2">
+          <a href="{% url 'member:find_user' %}">Forgot?</a>
+        </span>
         <button type="submit">Signup</button>
       </div>
     </form>
