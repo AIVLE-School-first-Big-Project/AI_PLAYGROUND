@@ -1,17 +1,11 @@
 import tensorflow as tf
 import tensorflow.contrib as tf_contrib
 
-# Xavier : tf_contrib.layers.xavier_initializer()
-# He : tf_contrib.layers.variance_scaling_initializer()
-# Normal : tf.random_normal_initializer(mean=0.0, stddev=0.02)
-# l2_decay : tf_contrib.layers.l2_regularizer(0.0001)
 
 weight_init = tf.random_normal_initializer(mean=0.0, stddev=0.02)
 weight_regularizer = tf_contrib.layers.l2_regularizer(scale=0.0001)
 
-##################################################################################
 # Layer
-##################################################################################
 
 def conv(x, channels, kernel=4, stride=2, pad=0, pad_type='zero', use_bias=True, sn=False, scope='conv_0'):
     with tf.variable_scope(scope):
@@ -104,9 +98,7 @@ def fully_connected(x, units, use_bias=True, sn=False, scope='linear'):
 def flatten(x) :
     return tf.layers.flatten(x)
 
-##################################################################################
 # Residual-block
-##################################################################################
 
 def resblock(x_init, channels, use_bias=True, scope='resblock_0'):
     with tf.variable_scope(scope):
@@ -134,10 +126,7 @@ def adaptive_ins_layer_resblock(x_init, channels, gamma, beta, use_bias=True, sm
 
         return x + x_init
 
-
-##################################################################################
 # Sampling
-##################################################################################
 
 def up_sample(x, scale_factor=2):
     _, h, w, _ = x.get_shape().as_list()
@@ -153,9 +142,7 @@ def global_max_pooling(x):
     gmp = tf.reduce_max(x, axis=[1, 2])
     return gmp
 
-##################################################################################
 # Activation function
-##################################################################################
 
 def lrelu(x, alpha=0.01):
     # pytorch alpha is 0.01
@@ -172,9 +159,7 @@ def tanh(x):
 def sigmoid(x) :
     return tf.sigmoid(x)
 
-##################################################################################
 # Normalization function
-##################################################################################
 
 def adaptive_instance_layer_norm(x, gamma, beta, smoothing=True, scope='instance_layer_norm') :
     with tf.variable_scope(scope):
@@ -263,9 +248,7 @@ def spectral_norm(w, iteration=1):
 
     return w_norm
 
-##################################################################################
 # Loss function
-##################################################################################
 
 def L1_loss(x, y):
     loss = tf.reduce_mean(tf.abs(x - y))

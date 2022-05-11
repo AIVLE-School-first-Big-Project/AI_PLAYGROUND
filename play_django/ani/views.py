@@ -27,7 +27,7 @@ def fileUpload(request):
         upload = {'file': fileupload.imgfile,
                 'filename':fileupload.imgfile.name[11:]
         }
-        res = requests.post('http://127.0.0.1:5000/predict', files = upload)
+        res = requests.post('http://127.0.0.1:5001/predict', files = upload)
 
         test=literal_eval(res.json())
         if test['try'] == 'success':
