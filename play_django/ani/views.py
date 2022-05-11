@@ -21,7 +21,7 @@ def fileUpload(request):
             img = request.FILES['imgfile']
         except:
             print('no')
-            return render(request, 'ani/noface.html')
+            return render(request, 'ani/noupload.html')
         img.name = '1.jpg'
         fileupload = FileUpload(
             imgfile=img,
