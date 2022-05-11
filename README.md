@@ -52,4 +52,4 @@
 <img src="https://img.shields.io/badge/Pytorch-EE4C2C?style=flat-square&logo=Pytorch&logoColor=white"/>
 <img src="https://img.shields.io/badge/Flask-3766AB?style=flat-square&logo=Flask&logoColor=white"/>
 ## 마치며.
-
+<img src="/play_django/README/review.jpeg"/>
