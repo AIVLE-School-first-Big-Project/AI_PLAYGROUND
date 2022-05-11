@@ -17,7 +17,11 @@ from ast import literal_eval
 
 def fileUpload(request):
     if request.method == 'POST':
-        img = request.FILES['imgfile']
+        try:
+            img = request.FILES['imgfile']
+        except:
+            print('no')
+            return render(request, 'ani/noface.html')
         img.name = '1.jpg'
         fileupload = FileUpload(
             imgfile=img,
